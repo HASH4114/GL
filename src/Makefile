@@ -4,7 +4,7 @@
 .SUFFIXES:
 
 sourcefiles = main.cpp
-progname= LG
+progname= GL
 CC=g++
 CFLAGS= -std=c++11 -Wall -Wextra -pedantic
 
