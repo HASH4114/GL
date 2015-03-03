@@ -3,7 +3,7 @@
 .PHONY: clean
 .SUFFIXES:
 
-sourcefiles = reg_ex.cpp
+sourcefiles = main.cpp 
 progname= GL
 CC=g++
 CFLAGS= -std=c++11 -Wall -Wextra -pedantic -lboost_regex
