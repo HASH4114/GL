@@ -4,7 +4,7 @@
 .SUFFIXES:
 
 sourcefiles = main.cpp 
-progname= GL
+progname= Analyseur.prout
 CC=g++
 CFLAGS= -std=c++11 -Wall -Wextra -pedantic -lboost_regex
 
