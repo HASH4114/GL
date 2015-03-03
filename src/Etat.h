@@ -15,4 +15,3 @@ protected:
 	string name;
 
 };
-
