@@ -1,13 +1,18 @@
 #makefile rudimentaire
 
+.PHONY: clean
+.SUFFIXES:
+
 sourcefiles = main.cpp
 progname= LG
 CC=g++
-FLAGS= -Wall -Wextra
+CFLAGS= -std=c++11 -Wall -Wextra -pedantic
 
 all: $(sourcefiles) clean
-	$(CC) $(FLAGS) -o $(progname) $(sourcefiles)
+	$(CC) $(CFLAGS) -o $(progname) $(sourcefiles)
+	cp $(progname) ../bin/$(progname)
 
 clean:
 	$(RM) $(progname)
+	$(RM) ../bin/$(progname)
 
