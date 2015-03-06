@@ -1,215 +1,266 @@
-#include <iostream> 
-#include "Etat.h" 
+#ifndef ETATS_H
+#define ETATS_H
+
+#include <iostream>
+#include "Etat.h"
 
 using namespace std;
 
+class E0 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat0 : public Etat {
+};
 
-}; 
 
+class E1 : public Etat{
+  //Redefinition of the constructor. It seems to be needed.
+  //To do with all the states. 
+  public:
+    E1(string name);
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat1 : public Etat {
+};
 
-}; 
 
+class E2 : public Etat{
+  public:
+    E2(string name);
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat2 : public Etat {
+};
 
-}; 
 
+class E3 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat3 : public Etat {
+};
 
-}; 
 
+class E4 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat4 : public Etat {
+};
 
-}; 
 
+class E5 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat5 : public Etat {
+};
 
-}; 
 
+class E6 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat6 : public Etat {
+};
 
-}; 
 
+class E7 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat7 : public Etat {
+};
 
-}; 
 
+class E8 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat8 : public Etat {
+};
 
-}; 
 
+class E9 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat9 : public Etat {
+};
 
-}; 
 
+class E10 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat10 : public Etat {
+};
 
-}; 
 
+class E11 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat11 : public Etat {
+};
 
-}; 
 
+class E12 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat12 : public Etat {
+};
 
-}; 
 
+class E13 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat13 : public Etat {
+};
 
-}; 
 
+class E14 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat14 : public Etat {
+};
 
-}; 
 
+class E15 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat15 : public Etat {
+};
 
-}; 
 
+class E16 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat16 : public Etat {
+};
 
-}; 
 
+class E17 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat17 : public Etat {
+};
 
-}; 
 
+class E18 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat18 : public Etat {
+};
 
-}; 
 
+class E19 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat19 : public Etat {
+};
 
-}; 
 
+class E20 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat20 : public Etat {
+};
 
-}; 
 
+class E21 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat21 : public Etat {
+};
 
-}; 
 
+class E22 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat22 : public Etat {
+};
 
-}; 
 
+class E23 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat23 : public Etat {
+};
 
-}; 
 
+class E24 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat24 : public Etat {
+};
 
-}; 
 
+class E25 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat25 : public Etat {
+};
 
-}; 
 
+class E26 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat26 : public Etat {
+};
 
-}; 
 
+class E27 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat27 : public Etat {
+};
 
-}; 
 
+class E28 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat28 : public Etat {
+};
 
-}; 
 
+class E29 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat29 : public Etat {
+};
 
-}; 
 
+class E30 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat30 : public Etat {
+};
 
-}; 
 
+class E31 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat31 : public Etat {
+};
 
-}; 
 
+class E32 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat32 : public Etat {
+};
 
-}; 
 
+class E33 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat33 : public Etat {
+};
 
-}; 
 
+class E34 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat34 : public Etat {
+};
 
-}; 
 
+class E35 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat35 : public Etat {
+};
 
-}; 
 
+class E36 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat36 : public Etat {
+};
 
-}; 
 
+class E37 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat37 : public Etat {
+};
 
-}; 
 
+class E38 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat38 : public Etat {
+};
 
-}; 
 
+class E39 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat39 : public Etat {
+};
 
-}; 
 
+class E40 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat40 : public Etat {
+};
 
-}; 
 
+class E41 : public Etat{
+  bool transition (Automate &automate, Symbol *s);
 
-class Etat41 : public Etat {
+};
 
-}; 
-
+#endif
