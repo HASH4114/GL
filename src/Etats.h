@@ -7,20 +7,26 @@
 using namespace std;
 
 class E0 : public Etat{
-  bool transition (Automate &automate, Symbol *s);
-
+public:
+    E0(string name);
+    ~E0();
+  private:
+    bool transition (Automate &automate, Symbol *s);
 };
 
 
 class E1 : public Etat{
   //Redefinition of the constructor. It seems to be needed.
-  //To do with all the states. 
+  //To do with all the states.
   public:
     E1(string name);
-  bool transition (Automate &automate, Symbol *s);
+    ~E1();
+  private:
+    bool transition (Automate &automate, Symbol *s);
 
 };
 
+/*
 
 class E2 : public Etat{
   public:
@@ -262,5 +268,5 @@ class E41 : public Etat{
   bool transition (Automate &automate, Symbol *s);
 
 };
-
+*/
 #endif
