@@ -7,11 +7,13 @@ sourcefiles = main.cpp Etats.cpp Automate.cpp
 progname= Analyseur.prout
 CC=g++
 CFLAGS= -std=c++11
-LIBS= -lboost_regex
+LIBS= -lboost_regex -lboost_program_options
+INC_PATH=-I/usr/local/include
+
 # quand on veut voir les warnings -Wall -Wextra -pedantic
 
 all: $(sourcefiles) clean
-	$(CC) $(CFLAGS) -o $(progname) $(sourcefiles) $(LIBS)
+	$(CC) $(CFLAGS) $(INC_PATH) -o $(progname) $(sourcefiles) $(LIBS)
 	cp $(progname) ../bin/$(progname)
 
 clean:
