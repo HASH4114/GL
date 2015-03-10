@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
 #include "Etat.h"
 #include "Expr.h"
 
@@ -20,11 +21,14 @@ int main(int argc, char *argv[])
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
     po::notify(vm);    
+    
+    // gestion des arguments
     if (vm.count("help")) 
     {
         cout << desc << "\n";
         return 1;
     }
+    
     if (vm.count("file")) 
     {
         std::ifstream ifs(vm["file"].as<std::string>().c_str());
@@ -32,7 +36,26 @@ int main(int argc, char *argv[])
         // pour mastho et felix
         //appel au parseur avec content
     }
-
-
-   return 0;
+    
+    if (vm.count("print")) 
+    {
+        // Affichage du programme
+    }
+    
+    if (vm.count("analyse"))
+    {
+        //analyse statique
+    }
+    
+    if (vm.count("execution")) 
+    {
+        //execution
+    }
+    
+    if (vm.count("transformation")) 
+    {
+        //reduction
+    }
+    
+    return 0;
 }
