@@ -1,11 +1,16 @@
+#ifndef EXPR_H
+#define EXPR_H
+
 #include <iostream>
 #include <map>
 #include "config.h"
 using namespace std;
 
-class Expr : public Symbole {
+class Expr : public Symbol {
 public:
-	Expr():Symbole(EXPR) {}
+	Expr():Symbol(EXPR) {}
 	virtual ~Expr();
 	virtual double eval (const map<string, double> & valeurs) = 0 ;
 };
+
+#endif

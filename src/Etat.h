@@ -1,17 +1,25 @@
+#ifndef ETAT_H
+#define ETAT_H
+
 #include <iostream>
+#include <string>
+#include "Symbol.h"
 #include "Automate.h"
-#include "Symbole.h"
 
 using namespace std;
 
 class Etat {
 
 public:
-	Etat(string name);
-	virtual ~Etat();
+	Etat(string name){
+		this->name=name;
+	}
+	virtual ~Etat(){}
 	void print() const;
-	virtual bool transition(Automate  &automate, Symbole *s) = 0;
+	virtual bool transition(Automate  &automate, Symbol *s) = 0;
 protected:
 	string name;
 
 };
+
+#endif

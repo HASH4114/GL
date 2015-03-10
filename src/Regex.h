@@ -1,16 +1,21 @@
+#ifndef REGEX_H
+#define REGEX_H
+
 #include <stdio.h>
 #include <regex>
-#include <string> 
+#include <string>
 #include <boost/regex.hpp>
 #include <boost/algorithm/string.hpp>
 
-class Regex 
+class Regex
 {
 public:
 	Regex();
 	std::string findWord(std::string exp);
-	
+
 private:
 	std::vector<boost::regex> regexs;
 	std::vector<char> symboles;
 };
+
+#endif

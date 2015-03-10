@@ -3,13 +3,15 @@
 .PHONY: clean
 .SUFFIXES:
 
-sourcefiles = Regex.cpp
-progname= Analyseur.prout
+sourcefiles = main.cpp Etats.cpp Automate.cpp
+progname= Analyseur
 CC=g++
-CFLAGS= -std=c++11 -Wall -Wextra -pedantic -lboost_regex
+CFLAGS= -std=c++11
+LIBS= -lboost_regex
+# quand on veut voir les warnings -Wall -Wextra -pedantic
 
 all: $(sourcefiles) clean
-	$(CC) $(CFLAGS) -o $(progname) $(sourcefiles)
+	$(CC) $(CFLAGS) -o $(progname) $(sourcefiles) $(LIBS)
 	cp $(progname) ../bin/$(progname)
 
 clean:
