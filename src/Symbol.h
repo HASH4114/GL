@@ -2,6 +2,7 @@
 #define SYMBOL_H
 
 /*  	
+		Explanation of the enum
 	id 	: name of the variable
 	add : replace +
 	ss 	: replace -
@@ -30,14 +31,7 @@
 	Lid	: List of id
 */
 
-
-
-
-
-
-
-
-enum Symbols {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,$,Pp,P,Ld,Li,D,I,E,Lcst,Lid};
+enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,$,Pp,P,Ld,Li,D,I,E,Lcst,Lid};
 
 class Symbol {
 	protected:
