@@ -4,11 +4,12 @@
 #include "Symbol.h"
 #include <stack>
 
-using namespace std;
+using namespace std; 
 
 class Etat;
 
 class Automate{
+
 	public:
 		Automate();
 		virtual ~Automate();

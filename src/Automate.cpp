@@ -12,3 +12,4 @@ void Automate::reduce(Symbol s, int nbStatesToPop){
 
 void Automate::accept(){
 }
+
