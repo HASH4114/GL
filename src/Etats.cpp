@@ -6,7 +6,8 @@ bool E0 :: transition (Automate &automate, Symbol *s){
   switch (*s){
     //Here we define the different cases we can encounter, meaning the different
     //transitions. Next step is to replace with the symbols.
-    case 1: //TODO : To replace with P
+    case P: //TODO : To replace with P
+      //créer un objet symbole qui correspond à P pour le mettre dans la pile
       automate.shift(*s, new E1(""));
       break;
     case 2: //TODO : To replace with Ld
@@ -30,7 +31,6 @@ bool E1 :: transition (Automate &automate, Symbol *s){
 }
 
 
-/*
 bool E2 :: transition (Automate &automate, Symbol *s){
   switch (*s){
     default:
@@ -428,4 +428,3 @@ bool E41 :: transition (Automate &automate, Symbol *s){
   }
   return false;
 }
-*/
