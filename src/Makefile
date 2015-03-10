@@ -3,7 +3,7 @@
 .PHONY: clean
 .SUFFIXES:
 
-sourcefiles = main.cpp Etats.cpp
+sourcefiles = Regex.cpp
 progname= Analyseur.prout
 CC=g++
 CFLAGS= -std=c++11 -Wall -Wextra -pedantic -lboost_regex
