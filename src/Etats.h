@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Etat.h"
 
+
 class E0:public Etat {
 	public:
 		 E0(string name) : Etat(name){}
@@ -35,6 +36,7 @@ class E3:public Etat {
   private:
 		 bool transition (Automate &automate, Symbol *s);
 };
+
 class E4:public Etat {
 	public:
 		 E4(string name) : Etat(name){}
@@ -42,6 +44,7 @@ class E4:public Etat {
   private:
 		 bool transition (Automate &automate, Symbol *s);
 };
+
 class E5:public Etat {
 	public:
 		 E5(string name) : Etat(name){}

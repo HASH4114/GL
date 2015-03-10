@@ -6,9 +6,10 @@ bool E0 :: transition (Automate &automate, Symbol *s){
   switch (*s){
     //Here we define the different cases we can encounter, meaning the different
     //transitions. Next step is to replace with the symbols.
-    case P: //TODO : To replace with P
-      //créer un objet symbole qui correspond à P pour le mettre dans la pile
-      automate.shift(*s, new E1(""));
+    case P:
+      //Creation of an object Symbol to stack into the pile
+      //Symbol symbolP = new Symbol();
+      automate.shift(*s, new E1());
       break;
     case 2: //TODO : To replace with Ld
       //automate.shift(s, new E2(NULL));
