@@ -7,8 +7,8 @@ void Automate::shift(Symbol s, Etat *e){
   symbolStack.push(s);
 }
 
-void Automate::reduce(Symbol s, Etat *e){
+void Automate::reduce(Symbol s, int nbStatesToPop){
 }
 
-void Automate::accept(Symbol s, Etat *e){
+void Automate::accept(){
 }
