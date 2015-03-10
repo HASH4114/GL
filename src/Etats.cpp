@@ -1,12 +1,13 @@
 #include "Etats.h"
 
+using namespace std;
+
 bool E0 :: transition (Automate &automate, Symbol *s){
-  switch ((int) *s){
+  switch (*s){
     //Here we define the different cases we can encounter, meaning the different
     //transitions. Next step is to replace with the symbols.
     case 1: //TODO : To replace with P
-      //automate.shift(*s, new E1(NULL));
-      //TODO : replace the NULL
+      automate.shift(*s, new E1(""));
       break;
     case 2: //TODO : To replace with Ld
       //automate.shift(s, new E2(NULL));
