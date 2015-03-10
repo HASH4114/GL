@@ -4,7 +4,7 @@
 .SUFFIXES:
 
 sourcefiles = main.cpp Etats.cpp Automate.cpp
-progname= Analyseur.prout
+progname= Analyseur
 CC=g++
 CFLAGS= -std=c++11
 LIBS= -lboost_regex -lboost_program_options
