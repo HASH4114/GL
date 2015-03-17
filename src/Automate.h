@@ -4,7 +4,7 @@
 #include "Symbol.h"
 #include <stack>
 
-using namespace std; 
+using namespace std;
 
 class Etat;
 
@@ -18,6 +18,7 @@ class Automate{
 		//Etat, and Etat is abstract.
 		void reduce(Symbol s, int nbStatesToPop);
 		void accept();
+		Symbol popS();
 	private:
 		stack <Etat*> stateStack;
 		stack <Symbol> symbolStack;
