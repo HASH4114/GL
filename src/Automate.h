@@ -16,7 +16,7 @@ class Automate{
 		//Etat, and Etat is abstract.
 		void reduce(Symbol* s, int nbStatesToPop);
 		void accept();
-		Symbol popS();
+		Symbol* popS();
 	private:
 		stack <Etat*> stateStack;
 		stack <Symbol*> symbolStack;

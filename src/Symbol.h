@@ -3,7 +3,7 @@
 
 #include <list>
 
-/*  	
+/*
 		Explanation of the enum
 	id 	: name of the variable
 	add : replace +
@@ -41,12 +41,12 @@ class Symbol {
 	private:
 		std::list<Symbol*> listSymbol;
 	public:
-		void addSymbolToList(Symbol s);
+		void addSymbolToList(Symbol* s);
 		Symbol(int id) : ident(id) {}
 		virtual ~Symbol(){}
 		void print();
 		//Redefinition of the operator that is supposed to convert Symbol in int.
-		//Doesn't work for now, that's apparently why we have an error. 
+		//Doesn't work for now, that's apparently why we have an error.
 		operator int() const {return ident;}
 };
 

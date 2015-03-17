@@ -15,7 +15,7 @@ void Automate::accept()
 {
 }
 
-Symbol Automate::popS()
+Symbol* Automate::popS()
 {
 
 }
