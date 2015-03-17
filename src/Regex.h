@@ -7,11 +7,16 @@
 #include <boost/regex.hpp>
 #include <boost/algorithm/string.hpp>
 
+struct match {
+	std::string word;
+	int id_symbol;
+};
+
 class Regex
 {
 public:
 	Regex();
-	std::string findWord(std::string exp);
+	struct match findWord(std::string exp);
 
 private:
 	std::vector<boost::regex> regexs;

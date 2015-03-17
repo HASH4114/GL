@@ -3,7 +3,7 @@
 .PHONY: clean
 .SUFFIXES:
 
-sourcefiles = main.cpp Etats.cpp Automate.cpp
+sourcefiles = Regex.cpp Parseur.cpp
 progname= Analyseur
 CC=g++
 CFLAGS= -std=c++11
