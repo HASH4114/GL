@@ -6,10 +6,9 @@
 class Parseur 
 {
 public:
-	
 	Parseur(std::string content);
 	Symbol* getNextSymbole();
-	
+
 private:
 	std::string content;
 	Regex reg;

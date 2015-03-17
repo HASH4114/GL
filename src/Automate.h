@@ -1,10 +1,8 @@
 #ifndef AUTOMATE_H
 #define AUTOMATE_H
 
-#include "Symbol.h"
+#include "Symbols.h"
 #include <stack>
-
-using namespace std; 
 
 class Etat;
 
@@ -18,6 +16,7 @@ class Automate{
 		//Etat, and Etat is abstract.
 		void reduce(Symbol s, int nbStatesToPop);
 		void accept();
+		Symbol popS();
 	private:
 		stack <Etat*> stateStack;
 		stack <Symbol> symbolStack;

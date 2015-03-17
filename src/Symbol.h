@@ -1,6 +1,8 @@
 #ifndef SYMBOL_H
 #define SYMBOL_H
 
+#include <list>
+
 /*  	
 		Explanation of the enum
 	id 	: name of the variable
@@ -31,12 +33,15 @@
 	Lide: List of id
 */
 
-enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,$,Ppe,Pe,Ld,Lie,De,Ie,Ee,Lcste,Lide};
+enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,$,Ppe,Pe,Lde,Lie,De,Ie,Ee,Lcste,Lide};
 
 class Symbol {
 	protected:
 		int ident;
+	private:
+		std::list<Symbol*> listSymbol;
 	public:
+		void addSymbolToList(Symbol s);
 		Symbol(int id) : ident(id) {}
 		virtual ~Symbol(){}
 		void print();
