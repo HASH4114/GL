@@ -5,39 +5,37 @@
 #include <string>
 #include "Symbol.h"
 
-using namespace std; 
-/* D
-	P
-	Instr
-	*/
+using namespace std;
 
 class D:public Symbol{
 public:
 	D(int id);
 	virtual ~D() {}
-
 };
 
 class Ld:public Symbol{
 public:
 	Ld(int id);
+	void addDeclaration(D* d);
 	virtual ~Ld(){}
 private:
-	list<D> ld; //method for add an element to the list
+	list<D*> ld; //method for add an element to the list
 };
 
 class I:public Symbol{
 public:
 	I(int id);
 	virtual ~I() {}
+
 };
 
 class Li:public Symbol{
 public:
 	Li(int id); //method for add an element to the list
+	void addInstruction(I* i);
 	virtual ~Li() {}
 private:
-	list<I> li;
+	list<I*> li;
 };
 
 class P:public Symbol{
@@ -89,10 +87,10 @@ public:
 	virtual ~ExpMult(){}
 };
 
-class Expplus:public ExpBinaire{
+class ExpPlus:public ExpBinaire{
 public:
-	Expplus(int id);
-	virtual ~Expplus(){}
+	ExpPlus(int id);
+	virtual ~ExpPlus(){}
 };
 
 class ExpDiv:public ExpBinaire{
@@ -109,7 +107,7 @@ public:
 
 class DVar:public D{
 public:
-	DVar(int id);
+	DVar(int id,string name, double val) : D(id),name(name),value(val){}
 	void read(); 
 	void write();
 	virtual ~DVar() {}
@@ -120,7 +118,8 @@ private:
 
 class DConst:public D{
 public:
-	DConst(int id);
+
+	DConst(int id,string name,double val): D(id),name(name),value(val) {}
 	void read();
 	virtual ~DConst() {}
 private:
