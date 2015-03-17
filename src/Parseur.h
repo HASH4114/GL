@@ -6,7 +6,7 @@ enum Symbole{};
 class Parseur 
 {
 public:
-	Parseur(std:string content);
+	Parseur(std::string content);
 	Symbole getNextSymbole();
 	
 private:

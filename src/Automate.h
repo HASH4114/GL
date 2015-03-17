@@ -1,10 +1,10 @@
 #ifndef AUTOMATE_H
 #define AUTOMATE_H
 
-#include "Symbol.h"
+#include "Symbols.h"
 #include <stack>
 
-using namespace std; 
+
 
 class Etat;
 
