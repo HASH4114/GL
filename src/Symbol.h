@@ -22,15 +22,15 @@
 	n 	: value of the variable or the constant
 	af	: replace :=
 	$	: the end.
-	Pp	: P'
-	P 	: the program
-	Ld 	: List of declarations
-	Li 	: List of instructions
-	D 	: A declaration
-	I 	: An instruction
-	E 	: An expression
-	Lcst: List of constants delarations
-	Lid	: List of id
+	Ppe	: P'
+	Pe 	: the program
+	Lde	: List of declarations
+	Lie	: List of instructions
+	De 	: A declaration
+	Ie 	: An instruction
+	Ee 	: An expression
+	Lcste: List of constants delarations
+	Lide: List of id
 */
 
 enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,$,Ppe,Pe,Lde,Lie,De,Ie,Ee,Lcste,Lide};

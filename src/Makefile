@@ -3,6 +3,7 @@
 .PHONY: clean
 .SUFFIXES:
 
+
 sourcefiles = main.cpp Etats.cpp Automate.cpp Symbols.cpp
 progname= Analyseur
 CC=g++

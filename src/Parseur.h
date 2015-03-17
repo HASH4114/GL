@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <string>
-
-enum Symbole{};
+#include "Regex.h"
+#include "Symbol.h"
 
 class Parseur 
 {
 public:
 	Parseur(std::string content);
-	Symbole getNextSymbole();
-	
+	Symbol* getNextSymbole();
+
 private:
 	std::string content;
+	Regex reg;
 };
+
