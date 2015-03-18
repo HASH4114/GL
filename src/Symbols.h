@@ -38,6 +38,27 @@ private:
 	list<I*> li;
 };
 
+// Bastien : J'ai créé cette classe parce que j'en ai besoin en fait.
+class Lid:public Symbol{
+public:
+	Lid(int id); //method for add an element to the list
+	void addIdentifier(I* i); //TODO : changer en identifiant dans la parenthèse... et dans le cpp aussi
+	virtual ~Lid() {}
+private:
+	list<I*> lid; //TODO : pareil ici..
+};
+
+// Bastien : J'ai créé cette classe parce que j'en ai besoin en fait.
+class Lcst:public Symbol{
+public:
+	Lcst(int id); //method for add an element to the list
+	void addConstant(I* i); //TODO : changer en constante dans la parenthèse.. et dans le cpp aussi
+	virtual ~Lcst() {}
+private:
+	list<I*> lcst; //TODO : pareil ici..
+};
+
+
 class P:public Symbol{
 public:
 	P(int id);
@@ -108,7 +129,7 @@ public:
 class DVar:public D{
 public:
 	DVar(int id,string name, double val) : D(id),name(name),value(val){}
-	void read(); 
+	void read();
 	void write();
 	virtual ~DVar() {}
 private:
@@ -124,7 +145,7 @@ public:
 	virtual ~DConst() {}
 private:
 	string name;
-	const double value; 
+	const double value;
 };
 
 class R:public I{
@@ -132,7 +153,7 @@ public:
 	R(int id);
 	virtual ~R() {}
 private:
-	Variable var; 
+	Variable var;
 };
 
 class W:public I{
@@ -141,7 +162,7 @@ public:
 	virtual ~W() {}
 private:
 	Variable var;
-	Constante cons;  
+	Constante cons;
 };
 
 class Aff:public I{
@@ -149,7 +170,7 @@ public:
 	Aff(int id);
 	virtual ~Aff() {}
 private:
-	Variable var; 
+	Variable var;
 };
 
 

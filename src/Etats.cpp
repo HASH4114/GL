@@ -7,6 +7,7 @@ using namespace std;
 
 bool E0 :: transition (Automate &automate, Symbol *s)
 {
+  Symbol* ld = new Ld(Lde); //We create a new Symbol Ld in order to push it to the stack.
   switch (*s)
   {
     //Here we define the different cases we can encounter, meaning the different
@@ -15,7 +16,14 @@ bool E0 :: transition (Automate &automate, Symbol *s)
       automate.shift(s, new E1());
       break;
     case Lde:
-    automate.shift(s, new E1());
+    automate.shift(s, new E2());
+      break;
+    case id: //For id, r, w v and c we do the exact same thing, reducing.
+    case r:
+    case w:
+    case v:
+    case c:
+      automate.reduce(ld, 0);
       break;
     default:
       break;
@@ -57,15 +65,9 @@ bool E2 :: transition (Automate &automate, Symbol *s)
     case c:
       automate.shift(s, new E6());
       break;
-    case id:
-      automate.reduce(li, 0);
-      break;
+    case id: //For id, r, w and $ we do the exact same thing, reducing.
     case r:
-      automate.reduce(li, 0);
-      break;
     case w:
-      automate.reduce(li, 0);
-      break;
     case $:
       automate.reduce(li, 0);
       break;
@@ -79,8 +81,8 @@ bool E2 :: transition (Automate &automate, Symbol *s)
 
 bool E3 :: transition (Automate &automate, Symbol *s){
   switch (*s){
-    case id :
-      automate.shift(s, new E10());
+    case Ie:
+      automate.shift(s, new E7());
       break;
     case r:
       automate.shift(s, new E8());
@@ -88,8 +90,8 @@ bool E3 :: transition (Automate &automate, Symbol *s){
     case w:
       automate.shift(s, new E9());
       break;
-    case Ie:
-      automate.shift(s, new E7());
+    case id :
+      automate.shift(s, new E10());
       break;
     default:
       break;
@@ -166,17 +168,17 @@ bool E8 :: transition (Automate &automate, Symbol *s){
 
 bool E9 :: transition (Automate &automate, Symbol *s){
   switch (*s){
-    case id:
-      automate.shift(s, new E18());
+    case Ee:
+      automate.shift(s, new E16());
       break;
     case pl:
       automate.shift(s, new E17());
       break;
+    case id:
+      automate.shift(s, new E18());
+      break;
     case n:
       automate.shift(s, new E19());
-      break;
-    case Ee:
-      automate.shift(s, new E16());
       break;
     default:
       break;
@@ -200,12 +202,21 @@ bool E10 :: transition (Automate &automate, Symbol *s){
 
 
 bool E11 :: transition (Automate &automate, Symbol *s){
-  Symbol* pv = automate.popS();
-  Symbol* D = automate.popS();
-  Symbol* firstLd = automate.popS();
+  Symbol* pv;
+  Symbol* D;
+  Symbol* firstLd;
   Symbol* ld = new Ld(Lde);
   switch (*s){
+    //We do the exact same thing if we encounter id, r, w, v or c.
+    //We pop 3 symbols and reduce Ld.
   case id:
+  case r:
+  case w:
+  case v:
+  case c:
+      pv = automate.popS();
+      D = automate.popS();
+      firstLd = automate.popS();
       ld->addSymbolToList(pv);
       ld->addSymbolToList(D);
       ld->addSymbolToList(firstLd);
@@ -220,7 +231,15 @@ bool E11 :: transition (Automate &automate, Symbol *s){
 
 
 bool E12 :: transition (Automate &automate, Symbol *s){
+  Symbol* lid = new Lid(Lide);
   switch (*s){
+    case Lide:
+      automate.shift(s, new E21());
+      break;
+    case vi:
+    case pv:
+      automate.reduce(lid, 0);
+      break;
     default:
       break;
   }
@@ -231,6 +250,9 @@ bool E12 :: transition (Automate &automate, Symbol *s){
 
 bool E13 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case e:
+      automate.shift(s, new E22());
+      break;
     default:
       break;
   }
@@ -240,7 +262,23 @@ bool E13 :: transition (Automate &automate, Symbol *s){
 
 
 bool E14 :: transition (Automate &automate, Symbol *s){
+  Symbol* lis;
+  Symbol* i;
+  Symbol* pv;
+  Symbol* li = new Li(Lie);
   switch (*s){
+    case id:
+    case r:
+    case w:
+    case $:
+      lis = automate.popS();
+      i = automate.popS();
+      pv = automate.popS();
+      li->addSymbolToList(lis);
+      li->addSymbolToList(i);
+      li->addSymbolToList(pv);
+      automate.reduce(li, 3);
+      break;
     default:
       break;
   }
@@ -250,7 +288,16 @@ bool E14 :: transition (Automate &automate, Symbol *s){
 
 
 bool E15 :: transition (Automate &automate, Symbol *s){
+  Symbol* r;
+  Symbol* id;
+  Symbol* i = new I(Ie);
   switch (*s){
+    case pv:
+      r = automate.popS();
+      id = automate.popS();
+      i->addSymbolToList(r);
+      i->addSymbolToList(id);
+      automate.reduce(i,2);
     default:
       break;
   }
@@ -260,7 +307,29 @@ bool E15 :: transition (Automate &automate, Symbol *s){
 
 
 bool E16 :: transition (Automate &automate, Symbol *s){
+  Symbol* w;
+  Symbol* E;
+  Symbol* i = new I(Ie);
   switch (*s){
+    case add:
+      automate.shift(s, new E23());
+      break;
+    case ss:
+      automate.shift(s, new E24());
+      break;
+    case mul:
+      automate.shift(s, new E25());
+      break;
+    case dv:
+      automate.shift(s, new E26());
+      break;
+    case pv:
+      w = automate.popS();
+      E = automate.popS();
+      i->addSymbolToList(w);
+      i->addSymbolToList(E);
+      automate.reduce(i, 2);
+      break;
     default:
       break;
   }
@@ -271,6 +340,18 @@ bool E16 :: transition (Automate &automate, Symbol *s){
 
 bool E17 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case pl:
+      automate.shift(s, new E17());
+      break;
+    case id:
+      automate.shift(s, new E18());
+      break;
+    case n:
+      automate.shift(s, new E19());
+      break;
+    case Ee:
+      automate.shift(s, new E27());
+      break;
     default:
       break;
   }
