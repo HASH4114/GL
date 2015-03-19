@@ -214,9 +214,9 @@ bool E11 :: transition (Automate &automate, Symbol *s){
   case w:
   case v:
   case c:
-      pv = automate.popS();
-      D = automate.popS();
       firstLd = automate.popS();
+      D = automate.popS();
+      pv = automate.popS();
       ld->addSymbolToList(pv);
       ld->addSymbolToList(D);
       ld->addSymbolToList(firstLd);
@@ -271,9 +271,9 @@ bool E14 :: transition (Automate &automate, Symbol *s){
     case r:
     case w:
     case $:
-      lis = automate.popS();
-      i = automate.popS();
       pv = automate.popS();
+      i = automate.popS();
+      lis = automate.popS();
       li->addSymbolToList(lis);
       li->addSymbolToList(i);
       li->addSymbolToList(pv);
@@ -293,8 +293,8 @@ bool E15 :: transition (Automate &automate, Symbol *s){
   Symbol* i = new I(Ie);
   switch (*s){
     case pv:
-      r = automate.popS();
       id = automate.popS();
+      r = automate.popS();
       i->addSymbolToList(r);
       i->addSymbolToList(id);
       automate.reduce(i,2);
@@ -308,7 +308,7 @@ bool E15 :: transition (Automate &automate, Symbol *s){
 
 bool E16 :: transition (Automate &automate, Symbol *s){
   Symbol* w;
-  Symbol* E;
+  Symbol* e;
   Symbol* i = new I(Ie);
   switch (*s){
     case add:
@@ -324,10 +324,10 @@ bool E16 :: transition (Automate &automate, Symbol *s){
       automate.shift(s, new E26());
       break;
     case pv:
+      e = automate.popS();
       w = automate.popS();
-      E = automate.popS();
       i->addSymbolToList(w);
-      i->addSymbolToList(E);
+      i->addSymbolToList(e);
       automate.reduce(i, 2);
       break;
     default:
@@ -361,7 +361,19 @@ bool E17 :: transition (Automate &automate, Symbol *s){
 
 
 bool E18 :: transition (Automate &automate, Symbol *s){
+  Symbol* id;
+  Symbol* e = new Exp(Ee);
   switch (*s){
+    case add:
+    case ss:
+    case mul:
+    case dv:
+    case pr:
+    case pv:
+      id = automate.popS();
+      e->addSymbolToList(id);
+      automate.reduce(e, 1);
+      break;
     default:
       break;
   }
@@ -371,7 +383,19 @@ bool E18 :: transition (Automate &automate, Symbol *s){
 
 
 bool E19 :: transition (Automate &automate, Symbol *s){
+  Symbol* n;
+  Symbol* e = new Exp(Ee);
   switch (*s){
+    case add:
+    case ss:
+    case mul:
+    case dv:
+    case pr:
+    case pv:
+      n = automate.popS();
+      e->addSymbolToList(n);
+      automate.reduce(e, 1);
+      break;
     default:
       break;
   }
@@ -382,16 +406,44 @@ bool E19 :: transition (Automate &automate, Symbol *s){
 
 bool E20 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case Ee:
+      automate.shift(s, new E28());
+      break;
+    case pl:
+      automate.shift(s, new E17());
+      break;
+    case id:
+      automate.shift(s, new E18());
+      break;
+    case n:
+      automate.shift(s, new E19());
+      break;
     default:
       break;
-  }
+    }
   return false;
 }
 
 
 
 bool E21 :: transition (Automate &automate, Symbol *s){
+  Symbol* v;
+  Symbol* id;
+  Symbol* lid;
+  Symbol* d = new D(De);
   switch (*s){
+    case vi:
+      automate.shift(s, new E29());
+      break;
+    case pv:
+      lid = automate.popS();
+      id = automate.popS();
+      v= automate.popS();
+      d -> addSymbolToList(v);
+      d -> addSymbolToList(id);
+      d -> addSymbolToList(lid);
+      automate.reduce(d, 3);
+      break;
     default:
       break;
   }
@@ -402,6 +454,9 @@ bool E21 :: transition (Automate &automate, Symbol *s){
 
 bool E22 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case n :
+      automate.shift(s, new E30());
+      break;
     default:
       break;
   }
@@ -412,6 +467,18 @@ bool E22 :: transition (Automate &automate, Symbol *s){
 
 bool E23 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case Ee:
+      automate.shift(s, new E31());
+      break;
+    case pl:
+      automate.shift(s, new E17());
+      break;
+    case id:
+      automate.shift(s, new E18());
+      break;
+    case n:
+      automate.shift(s, new E19());
+      break;
     default:
       break;
   }
@@ -422,6 +489,18 @@ bool E23 :: transition (Automate &automate, Symbol *s){
 
 bool E24 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case Ee:
+      automate.shift(s, new E31());
+      break;
+    case pl:
+      automate.shift(s, new E17());
+      break;
+    case id:
+      automate.shift(s, new E18());
+      break;
+    case n:
+      automate.shift(s, new E19());
+      break;
     default:
       break;
   }
@@ -432,6 +511,18 @@ bool E24 :: transition (Automate &automate, Symbol *s){
 
 bool E25 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case Ee:
+      automate.shift(s, new E31());
+      break;
+    case pl:
+      automate.shift(s, new E17());
+      break;
+    case id:
+      automate.shift(s, new E18());
+      break;
+    case n:
+      automate.shift(s, new E19());
+      break;
     default:
       break;
   }
@@ -442,6 +533,18 @@ bool E25 :: transition (Automate &automate, Symbol *s){
 
 bool E26 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case Ee:
+      automate.shift(s, new E31());
+      break;
+    case pl:
+      automate.shift(s, new E17());
+      break;
+    case id:
+      automate.shift(s, new E18());
+      break;
+    case n:
+      automate.shift(s, new E19());
+      break;
     default:
       break;
   }
@@ -452,6 +555,21 @@ bool E26 :: transition (Automate &automate, Symbol *s){
 
 bool E27 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case add:
+      automate.shift(s, new E23());
+      break;
+    case ss:
+      automate.shift(s, new E24());
+      break;
+    case mul:
+      automate.shift(s, new E25());
+      break;
+    case dv:
+      automate.shift(s, new E26());
+      break;
+    case pr:
+      automate.shift(s, new E41());
+      break;
     default:
       break;
   }
@@ -461,7 +579,32 @@ bool E27 :: transition (Automate &automate, Symbol *s){
 
 
 bool E28 :: transition (Automate &automate, Symbol *s){
+  Symbol* id;
+  Symbol* af;
+  Symbol* e;
+  Symbol* i = new I(Ie);
   switch (*s){
+    case add:
+      automate.shift(s, new E23());
+      break;
+    case ss:
+      automate.shift(s, new E24());
+      break;
+    case mul:
+      automate.shift(s, new E25());
+      break;
+    case dv:
+      automate.shift(s, new E26());
+      break;
+    case pv:
+      e = automate.popS();
+      af = automate.popS();
+      id = automate.popS();
+      i->addSymbolToList(id);
+      i->addSymbolToList(af);
+      i->addSymbolToList(e);
+      automate.reduce(i, 3);
+      break;
     default:
       break;
   }
@@ -472,6 +615,9 @@ bool E28 :: transition (Automate &automate, Symbol *s){
 
 bool E29 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case id:
+      automate.shift(s, new E35());
+      break;
     default:
       break;
   }
@@ -481,7 +627,13 @@ bool E29 :: transition (Automate &automate, Symbol *s){
 
 
 bool E30 :: transition (Automate &automate, Symbol *s){
+  Symbol* lcst = new Lcst(Lcste);
   switch (*s){
+    case vi:
+    case pv:
+      automate.reduce(lcst, 0);
+    case Lcste:
+      automate.shift(s, new E36());
     default:
       break;
   }
@@ -491,7 +643,29 @@ bool E30 :: transition (Automate &automate, Symbol *s){
 
 
 bool E31 :: transition (Automate &automate, Symbol *s){
+  Symbol* e1;
+  Symbol* op;
+  Symbol* e2;
+  Symbol* expr = new Exp(Ee);
   switch (*s){
+    case add:
+    case ss:
+    case pr:
+    case pv:
+      e2 = automate.popS();
+      op = automate.popS();
+      e1 = automate.popS();
+      expr->addSymbolToList(e1);
+      expr->addSymbolToList(op);
+      expr->addSymbolToList(e2);
+      automate.reduce(expr, 3);
+      break;
+    case mul:
+      automate.shift(s, new E25());
+      break;
+    case dv:
+      automate.shift(s, new E26());
+      break;
     default:
       break;
   }
@@ -501,7 +675,29 @@ bool E31 :: transition (Automate &automate, Symbol *s){
 
 
 bool E32 :: transition (Automate &automate, Symbol *s){
+  Symbol* e1;
+  Symbol* op;
+  Symbol* e2;
+  Symbol* expr = new Exp(Ee);
   switch (*s){
+    case add:
+    case ss:
+    case pr:
+    case pv:
+      e2 = automate.popS();
+      op = automate.popS();
+      e1 = automate.popS();
+      expr->addSymbolToList(e1);
+      expr->addSymbolToList(op);
+      expr->addSymbolToList(e2);
+      automate.reduce(expr, 3);
+      break;
+    case mul:
+      automate.shift(s, new E25());
+      break;
+    case dv:
+      automate.shift(s, new E26());
+      break;
     default:
       break;
   }
@@ -511,7 +707,25 @@ bool E32 :: transition (Automate &automate, Symbol *s){
 
 
 bool E33 :: transition (Automate &automate, Symbol *s){
+  Symbol* e1;
+  Symbol* op;
+  Symbol* e2;
+  Symbol* expr = new Exp(Ee);
   switch (*s){
+    case add:
+    case ss:
+    case mul:
+    case dv:
+    case pr:
+    case pv:
+      e2 = automate.popS();
+      op = automate.popS();
+      e1 = automate.popS();
+      expr->addSymbolToList(e1);
+      expr->addSymbolToList(op);
+      expr->addSymbolToList(e2);
+      automate.reduce(expr, 3);
+      break;
     default:
       break;
   }
@@ -521,7 +735,25 @@ bool E33 :: transition (Automate &automate, Symbol *s){
 
 
 bool E34 :: transition (Automate &automate, Symbol *s){
+  Symbol* e1;
+  Symbol* op;
+  Symbol* e2;
+  Symbol* expr = new Exp(Ee);
   switch (*s){
+    case add:
+    case ss:
+    case mul:
+    case dv:
+    case pr:
+    case pv:
+      e2 = automate.popS();
+      op = automate.popS();
+      e1 = automate.popS();
+      expr->addSymbolToList(e1);
+      expr->addSymbolToList(op);
+      expr->addSymbolToList(e2);
+      automate.reduce(expr, 3);
+      break;
     default:
       break;
   }
@@ -531,7 +763,21 @@ bool E34 :: transition (Automate &automate, Symbol *s){
 
 
 bool E35 :: transition (Automate &automate, Symbol *s){
+  Symbol* lidb;
+  Symbol* virg; // Different name because else, it has the same name as vi enum
+  Symbol* id;
+  Symbol* lid = new Lid(Lide);
   switch (*s){
+    case vi:
+    case pv:
+      id = automate.popS();
+      virg = automate.popS();
+      lidb = automate.popS();
+      lid->addSymbolToList(lidb);
+      lid->addSymbolToList(virg);
+      lid->addSymbolToList(id);
+      automate.reduce(lid, 3);
+      break;
     default:
       break;
   }
@@ -541,7 +787,29 @@ bool E35 :: transition (Automate &automate, Symbol *s){
 
 
 bool E36 :: transition (Automate &automate, Symbol *s){
+  Symbol* c;
+  Symbol* id;
+  Symbol* e;
+  Symbol* n;
+  Symbol* lcstb;
+  Symbol* lcst = new Lcst(Lcste);
   switch (*s){
+    case vi:
+      automate.shift(s, new E37());
+      break;
+    case pv:
+      lcstb = automate.popS();
+      n = automate.popS();
+      e = automate.popS();
+      id = automate.popS();
+      c = automate.popS();
+      lcst->addSymbolToList(c);
+      lcst->addSymbolToList(id);
+      lcst->addSymbolToList(e);
+      lcst->addSymbolToList(n);
+      lcst->addSymbolToList(lcstb);
+      automate.reduce(lcst,5);
+      break;
     default:
       break;
   }
@@ -552,6 +820,9 @@ bool E36 :: transition (Automate &automate, Symbol *s){
 
 bool E37 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case id:
+      automate.shift(s, new E38());
+      break;
     default:
       break;
   }
@@ -562,6 +833,9 @@ bool E37 :: transition (Automate &automate, Symbol *s){
 
 bool E38 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case e:
+      automate.shift(s, new E39());
+      break;
     default:
       break;
   }
@@ -572,6 +846,9 @@ bool E38 :: transition (Automate &automate, Symbol *s){
 
 bool E39 :: transition (Automate &automate, Symbol *s){
   switch (*s){
+    case n:
+      automate.shift(s, new E40());
+      break;
     default:
       break;
   }
@@ -581,17 +858,55 @@ bool E39 :: transition (Automate &automate, Symbol *s){
 
 
 bool E40 :: transition (Automate &automate, Symbol *s){
+  Symbol* lcstb;
+  Symbol* virg;
+  Symbol* id;
+  Symbol* e;
+  Symbol* n;
+  Symbol* lcst = new Lcst(Lcste);
   switch (*s){
-    default:
+    case vi:
+    case pv:
+      n = automate.popS();
+      e = automate.popS();
+      id = automate.popS();
+      virg = automate.popS();
+      lcstb = automate.popS();
+      lcst->addSymbolToList(lcstb);
+      lcst->addSymbolToList(virg);
+      lcst->addSymbolToList(id);
+      lcst->addSymbolToList(e);
+      lcst->addSymbolToList(n);
+      automate.reduce(lcst,5);
       break;
-  }
+      default:
+        break;
+    }
   return false;
 }
 
 
 
 bool E41 :: transition (Automate &automate, Symbol *s){
+  Symbol* pl;
+  Symbol* e;
+  Symbol* pri;
+  Symbol* expr = new Exp(Ee);
   switch (*s){
+    case add:
+    case ss:
+    case mul:
+    case dv:
+    case pr:
+    case pv:
+      pri = automate.popS();
+      e = automate.popS();
+      pl = automate.popS();
+      expr->addSymbolToList(pl);
+      expr->addSymbolToList(e);
+      expr->addSymbolToList(pri);
+      automate.reduce(expr, 3);
+      break;
     default:
       break;
   }
