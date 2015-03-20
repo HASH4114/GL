@@ -16,10 +16,7 @@ public:
 class Ld:public Symbol{
 public:
 	Ld(int id);
-	void addDeclaration(D* d);
 	virtual ~Ld(){}
-private:
-	list<D*> ld; //method for add an element to the list
 };
 
 class I:public Symbol{
@@ -31,31 +28,21 @@ public:
 
 class Li:public Symbol{
 public:
-	Li(int id); //method for add an element to the list
-	void addInstruction(I* i);
+	Li(int id);
 	virtual ~Li() {}
-private:
-	list<I*> li;
 };
 
-// Bastien : J'ai créé cette classe parce que j'en ai besoin en fait.
 class Lid:public Symbol{
 public:
-	Lid(int id); //method for add an element to the list
-	void addIdentifier(I* i); //TODO : changer en identifiant dans la parenthèse... et dans le cpp aussi
+	Lid(int id);
 	virtual ~Lid() {}
-private:
-	list<I*> lid; //TODO : pareil ici..
 };
 
-// Bastien : J'ai créé cette classe parce que j'en ai besoin en fait.
+
 class Lcst:public Symbol{
 public:
 	Lcst(int id); //method for add an element to the list
-	void addConstant(I* i); //TODO : changer en constante dans la parenthèse.. et dans le cpp aussi
 	virtual ~Lcst() {}
-private:
-	list<I*> lcst; //TODO : pareil ici..
 };
 
 

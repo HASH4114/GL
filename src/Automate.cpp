@@ -9,6 +9,11 @@ void Automate::shift(Symbol* s, Etat *e)
 
 void Automate::reduce(Symbol* s, int nbStatesToPop)
 {
+    for (int i = 0; i<nbStatesToPop; i++)
+    {
+        stateStack.pop();
+    }
+    stateStack.top().transition(this, s);
 }
 
 void Automate::accept()
@@ -17,5 +22,7 @@ void Automate::accept()
 
 Symbol* Automate::popS()
 {
-
+  Symbol* symbol = symbolStack.top();
+  symbolStack.pop();
+  return symbol;
 }
