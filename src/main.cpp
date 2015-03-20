@@ -2,13 +2,14 @@
 #include <fstream>
 #include <string>
 
-#include "Etat.h"
+#include "Etats.h"
 #include "Expr.h"
 
 #include "boost/program_options.hpp"
 
 int main(int argc, char *argv[])
 {
+    /*
     namespace po = boost::program_options;
     po::options_description desc("Options");
     desc.add_options() ("help,", "Print help messages")
@@ -55,6 +56,24 @@ int main(int argc, char *argv[])
     if (vm.count("transformation"))
     {
         //reduction
+    }
+*/
+    Automate* tomate = new Automate();
+    list<int> listTest = {v,id,vi,id,vi,id,pv};
+    list<Symbol*> listSymb;
+    list<int>::iterator iterator;
+    for (iterator = listTest.begin(); iterator != listTest.end(); ++iterator) {
+        Symbol* s = new Symbol(*iterator);
+        listSymb.push_front(s);
+       
+    }
+    list<Symbol*>::iterator iteSymb;
+    Etat* e;
+    for(iteSymb = listSymb.begin(); iteSymb != listSymb.end() ; ++iteSymb ){
+
+        e = tomate->getStateStack().top();
+        std::cout << e->getName() << std::endl ;
+        e->transition(tomate, *iteSymb);
     }
 
     return 0;

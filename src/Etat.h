@@ -14,9 +14,10 @@ public:
 	Etat(string name){
 		this->name=name;
 	}
+	string getName(){return name;}
 	virtual ~Etat(){}
 	void print() const;
-	virtual bool transition(Automate  &automate, Symbol *s) = 0;
+	virtual bool transition(Automate  *automate, Symbol *s) = 0;
 protected:
 	string name;
 

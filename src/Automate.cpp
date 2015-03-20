@@ -1,4 +1,9 @@
-#include "Etat.h"
+#include "Etats.h"
+
+
+Automate::Automate(){
+  stateStack.push(new E0());
+}
 
 //Method that allows a shift of the symbol and that stocks the state and symbol into the stack
 void Automate::shift(Symbol* s, Etat *e)
@@ -13,7 +18,11 @@ void Automate::reduce(Symbol* s, int nbStatesToPop)
     {
         stateStack.pop();
     }
-    stateStack.top().transition(this, s);
+    stateStack.top()->transition(this, s);
+}
+
+stack<Etat*> Automate::getStateStack(){
+  return stateStack;
 }
 
 void Automate::accept()
