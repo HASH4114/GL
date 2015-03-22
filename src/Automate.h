@@ -12,7 +12,7 @@ class Automate{
 		Automate();
 		virtual ~Automate(){}
 		void shift(Symbol* s, Etat *e);
-		stack <Etat*> getStateStack();
+		Etat* getStateStackTop();
 		//If we don't use a pointer, it has no choice but to be an object of the class
 		//Etat, and Etat is abstract.
 		void reduce(Symbol* s, int nbStatesToPop);

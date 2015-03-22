@@ -21,8 +21,8 @@ void Automate::reduce(Symbol* s, int nbStatesToPop)
     stateStack.top()->transition(this, s);
 }
 
-stack<Etat*> Automate::getStateStack(){
-  return stateStack;
+Etat* Automate::getStateStackTop(){
+  return stateStack.top();
 }
 
 void Automate::accept()

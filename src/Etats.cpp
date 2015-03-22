@@ -14,7 +14,7 @@ bool E0 :: transition (Automate *automate, Symbol *s)
 			automate->shift(s, new E1());
 			break;
 		case Lde:
-		automate->shift(s, new E2());
+        		automate->shift(s, new E2());
 			break;
 		case id: //For id, r, w v and c we do the exact same thing, reducing.
 		case r:
@@ -22,6 +22,7 @@ bool E0 :: transition (Automate *automate, Symbol *s)
 		case v:
 		case c:
 			automate->reduce(ld, 0);
+      automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -49,18 +50,15 @@ bool E1 :: transition (Automate *automate, Symbol *s)
 bool E2 :: transition (Automate *automate, Symbol *s)
 {
 	Symbol* li = new Li(Lie); //We create a new Symbol Li in order to push it to the stack.
-	std::cout<<"Etat E2:" <<(int)*s<<"dafuk"<<std::endl;
 	switch ((int)*s)
 	{
 		case Lie:
-			std::cout<< "there" <<std::endl;
 			automate->shift(s, new E3());
 			break;
 		case De:
 			automate->shift(s, new E4());
 			break;
 		case v:
-			std::cout<< "ret here" <<std::endl;
 			automate->shift(s, new E5());
 			break;
 		case c:
@@ -71,6 +69,7 @@ bool E2 :: transition (Automate *automate, Symbol *s)
 		case w:
 		case $:
 			automate->reduce(li, 0);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -222,6 +221,7 @@ bool E11 :: transition (Automate *automate, Symbol *s){
 			ld->addSymbolToList(D);
 			ld->addSymbolToList(firstLd);
 			automate->reduce(ld,3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -240,6 +240,7 @@ bool E12 :: transition (Automate *automate, Symbol *s){
 		case vi:
 		case pv:
 			automate->reduce(lid, 0);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -279,6 +280,7 @@ bool E14 :: transition (Automate *automate, Symbol *s){
 			li->addSymbolToList(i);
 			li->addSymbolToList(pv);
 			automate->reduce(li, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -299,6 +301,8 @@ bool E15 :: transition (Automate *automate, Symbol *s){
 			i->addSymbolToList(r);
 			i->addSymbolToList(id);
 			automate->reduce(i,2);
+			automate->getStateStackTop()->transition(automate,s);
+			break;
 		default:
 			break;
 	}
@@ -330,6 +334,7 @@ bool E16 :: transition (Automate *automate, Symbol *s){
 			i->addSymbolToList(w);
 			i->addSymbolToList(e);
 			automate->reduce(i, 2);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -374,6 +379,7 @@ bool E18 :: transition (Automate *automate, Symbol *s){
 			id = automate->popS();
 			e->addSymbolToList(id);
 			automate->reduce(e, 1);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -396,6 +402,7 @@ bool E19 :: transition (Automate *automate, Symbol *s){
 			n = automate->popS();
 			e->addSymbolToList(n);
 			automate->reduce(e, 1);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -444,6 +451,7 @@ bool E21 :: transition (Automate *automate, Symbol *s){
 			d -> addSymbolToList(id);
 			d -> addSymbolToList(lid);
 			automate->reduce(d, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -605,6 +613,7 @@ bool E28 :: transition (Automate *automate, Symbol *s){
 			i->addSymbolToList(af);
 			i->addSymbolToList(e);
 			automate->reduce(i, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -633,8 +642,12 @@ bool E30 :: transition (Automate *automate, Symbol *s){
 		case vi:
 		case pv:
 			automate->reduce(lcst, 0);
+			automate->getStateStackTop()->transition(automate,s);
+			break;
 		case Lcste:
 			automate->shift(s, new E36());
+			automate->getStateStackTop()->transition(automate,s);
+			break;
 		default:
 			break;
 	}
@@ -660,6 +673,7 @@ bool E31 :: transition (Automate *automate, Symbol *s){
 			expr->addSymbolToList(op);
 			expr->addSymbolToList(e2);
 			automate->reduce(expr, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		case mul:
 			automate->shift(s, new E25());
@@ -692,6 +706,7 @@ bool E32 :: transition (Automate *automate, Symbol *s){
 			expr->addSymbolToList(op);
 			expr->addSymbolToList(e2);
 			automate->reduce(expr, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		case mul:
 			automate->shift(s, new E25());
@@ -726,6 +741,7 @@ bool E33 :: transition (Automate *automate, Symbol *s){
 			expr->addSymbolToList(op);
 			expr->addSymbolToList(e2);
 			automate->reduce(expr, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -754,6 +770,7 @@ bool E34 :: transition (Automate *automate, Symbol *s){
 			expr->addSymbolToList(op);
 			expr->addSymbolToList(e2);
 			automate->reduce(expr, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -778,6 +795,7 @@ bool E35 :: transition (Automate *automate, Symbol *s){
 			lid->addSymbolToList(virg);
 			lid->addSymbolToList(id);
 			automate->reduce(lid, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -810,6 +828,7 @@ bool E36 :: transition (Automate *automate, Symbol *s){
 			lcst->addSymbolToList(n);
 			lcst->addSymbolToList(lcstb);
 			automate->reduce(lcst,5);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
@@ -879,6 +898,7 @@ bool E40 :: transition (Automate *automate, Symbol *s){
 			lcst->addSymbolToList(e);
 			lcst->addSymbolToList(n);
 			automate->reduce(lcst,5);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 			default:
 				break;
@@ -907,6 +927,7 @@ bool E41 :: transition (Automate *automate, Symbol *s){
 			expr->addSymbolToList(e);
 			expr->addSymbolToList(pri);
 			automate->reduce(expr, 3);
+			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:
 			break;
