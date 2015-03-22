@@ -2,6 +2,7 @@
 #include <string>
 #include "Regex.h"
 #include "Symbol.h"
+#include "Symbols.h"
 
 class Parseur 
 {

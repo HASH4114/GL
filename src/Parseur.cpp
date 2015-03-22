@@ -9,28 +9,76 @@ Parseur::Parseur(std::string content)
 
 Symbol* Parseur::getNextSymbole(){
 	struct match results = reg.findWord(content);
+	Symbol* resultat;
+
 	// Gestion du cas word = ""
 	if (results.word == "") 
 	{
-		exit(0); // RENVOYER DES DOLLARDS 
+		resultat = new Symbol($);
+		return resultat; // RENVOYER DES DOLLARDS 
 	}
+
 	std::size_t pos = content.find(results.word);
+
 	if (pos == std::string::npos){
 		return NULL; // TODO : Gestion des erreurs
 	}
 
 	content = content.substr(pos + results.word.length());
-	Symbol* resultat;
+
 	switch (results.id_symbol) {
 		case 0 : // +
-			 resultat = new 
-			 break;
+			resultat = new ExpPlus(results.id_symbol);
+			break;
 		case 1 : // -
-			 
-			 break;
+			resultat = new ExpMoins(results.id_symbol);
+			break;
+		case 2 : // *
+			resultat = new ExpMult(results.id_symbol);
+			break;
+		case 3 : // /
+			resultat = new ExpDiv(results.id_symbol);
+			break;
+		case 4 : // (
+			resultat = new ExpUnaire(results.id_symbol);
+			break;
+		case 5 : // )
+			resultat = new ExpUnaire(results.id_symbol);
+			break;
+		case 6 : // ,
+			resultat = new ExpUnaire(results.id_symbol);
+			break;
+		case 7 : // ;
+			resultat = new ExpUnaire(results.id_symbol);
+			break;
+		case 8 : // =
+			resultat = new ExpUnaire(results.id_symbol);
+			break;
+		case 9 : // var
+			resultat = new Variable(results.id_symbol);
+			break;
+		case 10 : // const
+			resultat = new Constante(results.id_symbol);
+			break;
+		// case 11 : // lire
+		// 	resultat = new R(results.id_symbol);
+		// 	break;
+		// case 12 : // ecrire
+		// 	resultat = new W(results.id_symbol);
+		// 	break;
+		case 13 : // id
+			resultat = new Variable(results.id_symbol);
+			break;
+		case 14 : // nb
+			resultat = new Nombre(results.id_symbol);
+			break;
+		// case 15 : // assign
+ 	// 		resultat = new Aff(results.id_symbol);
+		// 	break;
 		default: 
 			exit(25);
-	}
+	return resultat;
+	}	
 	/*
 		Regex::symboles.push_back('+');
 	Regex::symboles.push_back('-');
@@ -82,10 +130,10 @@ Symbol* Parseur::getNextSymbole(){
 
 int main()
 {
-	std::string content = "var abc; var a;abc=5; ecrire abc; lire a; ecrire a;";
+	std::string content = ";";
 	Parseur p(content);
 	while (1){
-		std::cout << (int)*p.getNextSymbole() << std::endl;		
+		std::cout << *p.getNextSymbole(). << std::endl;		
 	}
 }
 
