@@ -42,18 +42,21 @@ enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,$,Ppe,Pe,Lde,Lie,De
 class D:public Symbol{
 public:
 	D(int id):Symbol(id){}
+	string to_string(){return "";}
 	virtual ~D() {}
 };
 
 class Ld:public Symbol{
 public:
 	Ld(int id):Symbol(id){}
+	string to_string(){return "";}
 	virtual ~Ld(){}
 };
 
 class I:public Symbol{
 public:
 	I(int id):Symbol(id){}
+	string to_string(){return "";}
 	virtual ~I() {}
 
 };
@@ -61,12 +64,14 @@ public:
 class Li:public Symbol{
 public:
 	Li(int id):Symbol(id){}
+	string to_string(){return "";}
 	virtual ~Li() {}
 };
 
 class Lid:public Symbol{
 public:
 	Lid(int id):Symbol(id){}
+	string to_string(){return "";}
 	virtual ~Lid() {}
 };
 
@@ -74,6 +79,7 @@ public:
 class Lcst:public Symbol{
 public:
 	Lcst(int id):Symbol(id){} //method for add an element to the list
+	string to_string(){return "";}
 	virtual ~Lcst() {}
 };
 
@@ -81,12 +87,14 @@ public:
 class P:public Symbol{
 public:
 	P(int id):Symbol(id){}
+	string to_string(){return "";}
 	virtual ~P() {}
 };
 
 class Exp:public Symbol{
 public:
 	Exp(int id):Symbol(id){}
+	string to_string(){return "";}
 	double eval(Exp Exp);
 	virtual ~Exp(){}
 };
@@ -96,6 +104,7 @@ public:
 class ExpUnaire:public Exp{
 public:
 	ExpUnaire(int id):Exp(id){}
+	string to_string(){return "";}
 	virtual ~ExpUnaire(){}
 };
 
@@ -137,6 +146,7 @@ public:
 class ExpBinaire:public Exp{
 public:
 	ExpBinaire(int id):Exp(id){}
+	string to_string(){return "";}
 	virtual ~ExpBinaire(){}
 };
 
@@ -204,6 +214,7 @@ class DVar:public D{
 public:
 	DVar(int id):D(id){}
 	DVar(int id,string name, int val) : D(id),name(name),value(val){}
+	string to_string(){return "";}
 	void read();
 	void write();
 	virtual ~DVar() {}
@@ -216,6 +227,7 @@ class DConst:public D{
 public:
 	DConst(int id):D(id){}
 	DConst(int id,string name,int val): D(id),name(name),value(val) {}
+	string to_string(){return "";}
 	void read();
 	virtual ~DConst() {}
 private:
