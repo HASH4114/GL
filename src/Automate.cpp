@@ -25,6 +25,11 @@ Etat* Automate::getStateStackTop(){
   return stateStack.top();
 }
 
+Symbol* Automate::getSymbolStackTop()
+{
+  return symbolStack.top();
+}
+
 void Automate::accept()
 {
 }
