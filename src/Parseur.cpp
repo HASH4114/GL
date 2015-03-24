@@ -61,10 +61,10 @@ Symbol* Parseur::getNextSymbole(){
 			resultat = new Constante(c);
 			break;
 		case 11 : // lire
-			resultat = new Symbol(r);
+			resultat = new R(r);
 			break;
 		case 12 : // ecrire
-			resultat = new Symbol(w);
+			resultat = new W(w);
 			break;
 		case 13 : // id
 			resultat = new Id(id, results.word);
@@ -73,7 +73,7 @@ Symbol* Parseur::getNextSymbole(){
 			resultat = new Nombre(n, std::stoi(results.word));
 			break;
 		case 15 : // :=
- 	 		resultat = new Symbol(af);
+ 	 		resultat = new Aff(af);
 		 	break;
 		default: 
 			return NULL;

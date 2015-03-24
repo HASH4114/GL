@@ -32,12 +32,19 @@ string display_program(Symbol* p)
 {
 
     list<Symbol*> listSymb = p->getListSymbol(); //
-
+    list<Symbol*> tmp;
+    list<Symbol*>::iterator it;
+    for (it = listSymb.begin(); it!=listSymb.end() ; ++it)
+    {
+        tmp = (*it)->getListSymbol();
+        listSymb.insert(it,tmp.begin(),tmp.end());
+    }
 
     string result ="";
     list<Symbol*>::iterator ite;
     for(ite = listSymb.begin();ite != listSymb.end();++ite)
     {
+        std::cout<< "i'm in da loop ! "<<std::endl;
         result += (*ite)->to_string();
     }
     return result;
@@ -98,8 +105,9 @@ int main(int argc, char *argv[])
     do
     {
         symbol = parseur.getNextSymbole();
+        std::cout<<symbol->to_string();
         e = tomate->getStateStackTop();
-        std::cout << e->getName() << std::endl ;
+        //std::cout << e->getName() << std::endl ; //Affichage des états
         e->transition(tomate, symbol);
     }while(symbol->getId() != dol);
 
@@ -118,6 +126,8 @@ int main(int argc, char *argv[])
     
     if (vm.count("print"))
     {
+        std::cout << "Enter in display_program"<<std::endl;
+        std::cout<<display_program(tomate->getSymbolStackTop());
         // Affichage du programme
     }
 

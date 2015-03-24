@@ -265,7 +265,7 @@ class Nombre:public Exp{
 public:
 	Nombre(int id):Exp(id){}
 	Nombre(int id,int val):Exp(id),val(val){}
-	string to_string(){return ""+val;}
+	string to_string(){return std::to_string(val);}
 	int getVal(){return val;}
 	virtual ~Nombre(){}
 private:
