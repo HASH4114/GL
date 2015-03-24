@@ -39,7 +39,7 @@ void StaticAnalysis::Analysis(){
 				for(int i = 0; i < constants.size()-1; i++){
 					boost::split(aConstant, constants.at(i), boost::is_any_of("="));
 					if(varValue.find(aConstant.at(0)) == varValue.end()){
-						varValue.insert(std::pair<std::string,Symbol*>(aConstant.at(0), new DConst(0, aConstant.at(0), atoi(aConstant.at(1).c_str()))));	//TODO : id mis à l'arrache
+						varValue.insert(std::pair<std::string,Symbol*>(aConstant.at(0), new DConst(SymbolEnum::n, aConstant.at(0), atoi(aConstant.at(1).c_str()))));	//TODO : id mis à l'arrache
 					}
 					else{
 						std::cout << "The constant " << aConstant.at(0) << " was already declared" << std::endl;
@@ -85,12 +85,12 @@ void StaticAnalysis::Analysis(){
 				}
 				//If it's a variable which was never assigned
 				else if(varValue.find(str)->second == NULL){
-					varValue.find(str)->second = new DVar(0, str, 0);
+					varValue.find(str)->second = new DVar(SymbolEnum::n, str, 0);
 				}
 			}
 			else if(varValue.find(sub) != varValue.end()){
 				if(varValue.find(sub)->second == NULL){
-					varValue.find(sub)->second = new DVar(0, sub, 0);	//TODO Valeur mise random
+					varValue.find(sub)->second = new DVar(SymbolEnum::n, sub, 0);	//TODO Valeur mise random
 				}
 				else if(typeid(varValue.find(sub)->second).name() == "DConst"){
 					std::cout << "You can't assigned a value to the constant " << sub << std::endl;
