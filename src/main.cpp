@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
     po::notify(vm);
-    
+
     //fichier fourni ?
     std::string last(argv[argc-1]);
     if(argc < 2 || (last != "-h" && last != "--help" && last[last.size()-1] == '-'))
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
         std::cout << desc << std::endl;
         return 0;
     }
-    
+
     if(last.find_last_of(".lt") != last.size()-1)
     {
         print_error(2);
@@ -118,12 +118,12 @@ int main(int argc, char *argv[])
 
         //analyse statique
     }
-    
+
     if (vm.count("transformation"))
     {
         //reduction
     }
-    
+
     if (vm.count("print"))
     {
         std::cout << "Enter in display_program"<<std::endl;
@@ -135,35 +135,42 @@ int main(int argc, char *argv[])
     {
 
         //reduction
+        
     }
-    
     /*Automate* tomate = new Automate();
         //execution
-    }
+    }*/
 
-    /*
+
     Automate* tomate = new Automate();
-    list<int> listTest = {v,id,vi,id,vi,id,pv,c,id,e,n,pv,c,id,e,n,pv,v,id,pv,id,af,pl,id,add,id,pr,mul,n,ss,n,pv};
+    list<int> listTest = {v,id,vi,id,vi,id,pv,dol};
     list<Symbol*> listSymb;
     list<int>::iterator iterator;
     for (iterator = listTest.begin(); iterator != listTest.end(); ++iterator) {
         Symbol* s = new Symbol(*iterator);
         listSymb.push_back(s);
-       
+
     }
     list<Symbol*>::iterator iteSymb;
     Etat* e;
     for(iteSymb = listSymb.begin(); iteSymb != listSymb.end() ; ++iteSymb ){
 
         e = tomate->getStateStackTop();
-        std::cout << e->getName() << std::endl ;
         e->transition(tomate, *iteSymb);
     }
 
     display_program(tomate->getSymbolStackTop());
-*/
     return 0;
 }
 
 
-
+string display_program(list<Symbol*> listSymb)
+{
+    string result ="";
+    list<Symbol*>::iterator ite;
+    for(ite = listSymb.begin();ite != listSymb.end();++ite)
+    {
+        //result += *ite->to_string();
+    }
+    return result;
+}
