@@ -1,0 +1,15 @@
+Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
+01.NoArgument;Echec;Non testé;Echec;Non testé;Echec
+02.FichierInexistant;Echec;Non testé;Echec;Non testé;Echec
+03.FichierExistant;Echec;Non testé;Non testé;Non testé;Echec
+04.Affichage;Echec;Echec;Non testé;Non testé;Echec
+05.DoubleDeclaration;Echec;Non testé;Echec;Non testé;Echec
+06.1.AnalyseStatique;Echec;Non testé;Echec;Non testé;Echec
+06.2.AnalyseStatique;Echec;Non testé;Echec;Non testé;Echec
+06.3.AnalyseStatique;Echec;Non testé;Echec;Non testé;Echec
+06.4.AnalyseStatique;Echec;Non testé;Echec;Non testé;Echec
+07.Execution;Echec;Echec;Non testé;Non testé;Echec
+08.1.Optimisation;Echec;Echec;Non testé;Non testé;Echec
+08.2.Optimisation;Echec;Echec;Non testé;Non testé;Echec
+09.ErreurLexicale;Echec;Non testé;Echec;Non testé;Echec
+10.ErreurSyntaxique;Echec;Non testé;Echec;Non testé;Echec

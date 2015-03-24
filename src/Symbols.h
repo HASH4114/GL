@@ -147,6 +147,7 @@ public:
 
 class DVar:public D{
 public:
+	DVar(int id) : D(id){}
 	DVar(int id,string name, int val) : D(id),name(name),value(val){}
 	void read();
 	void write();
