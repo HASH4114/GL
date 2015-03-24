@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
         //execution
     }*/
 
-
+/*
     Automate* tomate = new Automate();
     list<int> listTest = {v,id,vi,id,vi,id,pv,dol};
     list<Symbol*> listSymb;
@@ -159,11 +159,11 @@ int main(int argc, char *argv[])
         e->transition(tomate, *iteSymb);
     }
 
-    display_program(tomate->getSymbolStackTop());
+    display_program(tomate->getSymbolStackTop());*/
     return 0;
 }
 
-
+/*
 string display_program(list<Symbol*> listSymb)
 {
     string result ="";
@@ -173,4 +173,4 @@ string display_program(list<Symbol*> listSymb)
         //result += *ite->to_string();
     }
     return result;
-}
+}*/
