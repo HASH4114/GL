@@ -37,7 +37,7 @@ using namespace std;
 	Lide: List of id
 */
 
-enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,$,Ppe,Pe,Lde,Lie,De,Ie,Ee,Lcste,Lide};
+enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,dol,Ppe,Pe,Lde,Lie,De,Ie,Ee,Lcste,Lide};
 
 class D:public Symbol{
 public:

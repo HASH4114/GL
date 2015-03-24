@@ -36,7 +36,7 @@ bool E1 :: transition (Automate *automate, Symbol *s)
 {
 	switch (*s)
 	{
-		case $:
+		case dol:
 			//We got to the end of the file so we're finished
 			return true;
 			break;
@@ -67,7 +67,7 @@ bool E2 :: transition (Automate *automate, Symbol *s)
 		case id: //For id, r, w and $ we do the exact same thing, reducing.
 		case r:
 		case w:
-		case $:
+		case dol:
 			automate->reduce(li, 0);
 			automate->getStateStackTop()->transition(automate,s);
 			break;
@@ -272,7 +272,7 @@ bool E14 :: transition (Automate *automate, Symbol *s){
 		case id:
 		case r:
 		case w:
-		case $:
+		case dol:
 			pv = automate->popS();
 			i = automate->popS();
 			lis = automate->popS();
