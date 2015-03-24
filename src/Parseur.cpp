@@ -59,22 +59,23 @@ Symbol* Parseur::getNextSymbole(){
 			break;
 		case 10 : // const
 			resultat = new Constante(results.id_symbol);
+
 			break;
-		// case 11 : // lire
-		// 	resultat = new R(results.id_symbol);
-		// 	break;
-		// case 12 : // ecrire
-		// 	resultat = new W(results.id_symbol);
-		// 	break;
+		case 11 : // lire
+			resultat = new Symbol(results.id_symbol);
+			break;
+		case 12 : // ecrire
+			resultat = new Symbol(results.id_symbol);
+			break;
 		case 13 : // id
 			resultat = new Variable(results.id_symbol);
 			break;
 		case 14 : // nb
 			resultat = new Nombre(results.id_symbol);
 			break;
-		// case 15 : // assign
- 	// 		resultat = new Aff(results.id_symbol);
-		// 	break;
+		case 15 : // assign
+ 	 		resultat = new Symbol(results.id_symbol);
+		 	break;
 		default: 
 			exit(25);
 	return resultat;

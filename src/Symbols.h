@@ -147,24 +147,24 @@ public:
 
 class DVar:public D{
 public:
-	DVar(int id,string name, double val) : D(id),name(name),value(val){}
+	DVar(int id,string name, int val) : D(id),name(name),value(val){}
 	void read();
 	void write();
 	virtual ~DVar() {}
 private:
 	string name;
-	double value;
+	int value;
 };
 
 class DConst:public D{
 public:
 
-	DConst(int id,string name,double val): D(id),name(name),value(val) {}
+	DConst(int id,string name,int val): D(id),name(name),value(val) {}
 	void read();
 	virtual ~DConst() {}
 private:
 	string name;
-	const double value;
+	const int value;
 };
 /*
 class R:public I{
