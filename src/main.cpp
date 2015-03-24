@@ -75,28 +75,34 @@ int main(int argc, char *argv[])
 
     // gestion des arguments
 
-    if (vm.count("print"))
-    {
-        // Affichage du programme
-    }
-
     if (vm.count("analyse"))
     {
 
         //analyse statique
     }
+    
+    if (vm.count("transformation"))
+    {
+        //reduction
+    }
+    
+    if (vm.count("print"))
+    {
+        // Affichage du programme
+    }
 
     if (vm.count("execution"))
     {
-        //execution
-    }
 
-    if (vm.count("transformation"))
-    {
         //reduction
     }*/
     
     /*Automate* tomate = new Automate();
+        //execution
+    }
+
+    /*
+    Automate* tomate = new Automate();
     list<int> listTest = {v,id,vi,id,vi,id,pv,c,id,e,n,pv,c,id,e,n,pv,v,id,pv,id,af,pl,id,add,id,pr,mul,n,ss,n,pv};
     list<Symbol*> listSymb;
     list<int>::iterator iterator;
