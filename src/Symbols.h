@@ -102,30 +102,35 @@ public:
 class ExpParD:public ExpUnaire{
 public:
 	ExpParD(int id):ExpUnaire(id){}
+	string to_string(){return ")";}
 	virtual ~ExpParD(){}
 };
 
 class ExpParG:public ExpUnaire{
 public:
 	ExpParG(int id):ExpUnaire(id){}
+	string to_string(){return "(";}
 	virtual ~ExpParG(){}
 };
 
 class ExpEg:public ExpUnaire{
 public:
 	ExpEg(int id):ExpUnaire(id){}
+	string to_string(){return "=";}
 	virtual ~ExpEg(){}
 };
 
 class ExpVir:public ExpUnaire{
 public:
 	ExpVir(int id):ExpUnaire(id){}
+	string to_string(){return ",";}
 	virtual ~ExpVir(){}
 };
 
 class ExpPv:public ExpUnaire{
 public:
 	ExpPv(int id):ExpUnaire(id){}
+	string to_string(){return ";";}
 	virtual ~ExpPv(){}
 };
 
@@ -138,30 +143,35 @@ public:
 class ExpMult:public ExpBinaire{
 public:
 	ExpMult(int id):ExpBinaire(id){}
+	string to_string(){return "*";}
 	virtual ~ExpMult(){}
 };
 
 class ExpPlus:public ExpBinaire{
 public:
 	ExpPlus(int id):ExpBinaire(id){}
+	string to_string(){return "+";}
 	virtual ~ExpPlus(){}
 };
 
 class ExpDiv:public ExpBinaire{
 public:
 	ExpDiv(int id):ExpBinaire(id){}
+	string to_string(){return "/";}
 	virtual ~ExpDiv(){}
 };
 
 class ExpMoins:public ExpBinaire{
 public:
 	ExpMoins(int id):ExpBinaire(id){}
+	string to_string(){return "-";}
 	virtual ~ExpMoins(){}
 };
 
 class R:public I{
 public:
 	R(int id):I(id){}
+	string to_string(){return "Lire";}
 	virtual ~R() {}
 private:
 	//Variable var;
@@ -170,6 +180,7 @@ private:
 class W:public I{
 public:
 	W(int id):I(id){}
+	string to_string(){return "Ecrire";}
 	virtual ~W() {}
 private:
 	//Variable var;
@@ -179,6 +190,7 @@ private:
 class Aff:public I{
 public:
 	Aff(int id):I(id){}
+	string to_string(){return ":=";}
 	virtual ~Aff() {}
 private:
 	//Variable var;
@@ -215,12 +227,14 @@ private:
 class Variable:public Exp{
 public:
 	Variable(int id):Exp(id){}
+	string to_string(){return "var";}
 	virtual ~Variable(){}
 };
 //const
 class Constante:public Exp{
 public:
 	Constante(int id):Exp(id){}
+	string to_string(){return "const";}
 	virtual ~Constante(){}
 };
 //id
@@ -228,6 +242,7 @@ class Id:public Symbol{
 public:
 	Id(int id): Symbol(id){}
 	Id(int id,string name): Symbol(id),name(name){}
+	string to_string(){return name;}
 	string getName(){return name;}
 	virtual ~Id(){}
 private:
@@ -238,6 +253,7 @@ class Nombre:public Exp{
 public:
 	Nombre(int id):Exp(id){}
 	Nombre(int id,int val):Exp(id),val(val){}
+	string to_string(){return ""+val;}
 	int getVal(){return val;}
 	virtual ~Nombre(){}
 private:

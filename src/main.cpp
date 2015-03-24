@@ -9,7 +9,7 @@
 
 int main(int argc, char *argv[])
 {
-    
+    /*
     namespace po = boost::program_options;
     po::options_description desc("Options");
     desc.add_options() ("help,", "Print help messages")
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("analyse"))
     {
-        
+
         //analyse statique
     }
 
@@ -57,9 +57,8 @@ int main(int argc, char *argv[])
     if (vm.count("transformation"))
     {
         //reduction
-    }
-
-    /*
+    }*/
+    
     Automate* tomate = new Automate();
     list<int> listTest = {v,id,vi,id,vi,id,pv,c,id,e,n,pv,c,id,e,n,pv,v,id,pv,id,af,pl,id,add,id,pr,mul,n,ss,n,pv};
     list<Symbol*> listSymb;
@@ -76,7 +75,8 @@ int main(int argc, char *argv[])
         e = tomate->getStateStackTop();
         std::cout << e->getName() << std::endl ;
         e->transition(tomate, *iteSymb);
-    }*/
+    }
 
     return 0;
 }
+
