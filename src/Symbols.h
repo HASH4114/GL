@@ -130,7 +130,7 @@ public:
 class ExpPv:public ExpUnaire{
 public:
 	ExpPv(int id):ExpUnaire(id){}
-	string to_string(){return ";";}
+	string to_string(){return "; \n";}
 	virtual ~ExpPv(){}
 };
 
@@ -171,7 +171,7 @@ public:
 class R:public I{
 public:
 	R(int id):I(id){}
-	string to_string(){return "Lire";}
+	string to_string(){return "Lire ";}
 	virtual ~R() {}
 private:
 	//Variable var;
@@ -180,7 +180,7 @@ private:
 class W:public I{
 public:
 	W(int id):I(id){}
-	string to_string(){return "Ecrire";}
+	string to_string(){return "Ecrire ";}
 	virtual ~W() {}
 private:
 	//Variable var;
@@ -227,14 +227,14 @@ private:
 class Variable:public Exp{
 public:
 	Variable(int id):Exp(id){}
-	string to_string(){return "var";}
+	string to_string(){return "var ";}
 	virtual ~Variable(){}
 };
 //const
 class Constante:public Exp{
 public:
 	Constante(int id):Exp(id){}
-	string to_string(){return "const";}
+	string to_string(){return "const ";}
 	virtual ~Constante(){}
 };
 //id

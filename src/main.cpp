@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
         //reduction
     }*/
     
-    Automate* tomate = new Automate();
+    /*Automate* tomate = new Automate();
     list<int> listTest = {v,id,vi,id,vi,id,pv,c,id,e,n,pv,c,id,e,n,pv,v,id,pv,id,af,pl,id,add,id,pr,mul,n,ss,n,pv};
     list<Symbol*> listSymb;
     list<int>::iterator iterator;
@@ -112,8 +112,21 @@ int main(int argc, char *argv[])
         e = tomate->getStateStackTop();
         std::cout << e->getName() << std::endl ;
         e->transition(tomate, *iteSymb);
-    }
+    }*/
+
+    
 
     return 0;
+}
+
+string display_program(list<Symbol*> listSymb)
+{
+    string result ="";
+    list<Symbol*>::iterator ite;
+    for(ite = listSymb.begin();ite != listSymb.end();++ite)
+    {
+        result += *ite->to_string();
+    }
+    return result;
 }
 
