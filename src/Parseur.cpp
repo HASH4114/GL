@@ -68,7 +68,7 @@ Symbol* Parseur::getNextSymbole(){
 			resultat = new Symbol(results.id_symbol);
 			break;
 		case 13 : // id
-			resultat = new Variable(results.id_symbol);
+			resultat = new Id(results.id_symbol);
 			break;
 		case 14 : // nb
 			resultat = new Nombre(results.id_symbol);
@@ -129,9 +129,9 @@ Symbol* Parseur::getNextSymbole(){
 	return new Symbol(results.id_symbol);
 }
 
-int main()
+int Parseur::mainBis()
 {
-	std::string content = ";";
+	std::string content = "var y,u; const c = 5;";
 	Parseur p(content);
 	while (1){
 		std::cout << *p.getNextSymbole(). << std::endl;		

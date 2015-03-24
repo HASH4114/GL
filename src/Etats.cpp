@@ -21,6 +21,7 @@ bool E0 :: transition (Automate *automate, Symbol *s)
 		case w:
 		case v:
 		case c:
+		case dol:
 			automate->reduce(ld, 0);
       automate->getStateStackTop()->transition(automate,s);
 			break;
@@ -214,6 +215,7 @@ bool E11 :: transition (Automate *automate, Symbol *s){
 	case w:
 	case v:
 	case c:
+	case dol:
 			firstLd = automate->popS();
 			D = automate->popS();
 			pv = automate->popS();
