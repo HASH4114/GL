@@ -6,6 +6,7 @@ using namespace std;
 bool E0 :: transition (Automate *automate, Symbol *s)
 {
 	Symbol* ld = new Ld(Lde); //We create a new Symbol Ld in order to push it to the stack.
+	std::cout << this->getName() << std::endl;
 	switch (*s)
 	{
 		//Here we define the different cases we can encounter, meaning the different
@@ -35,7 +36,8 @@ bool E0 :: transition (Automate *automate, Symbol *s)
 
 bool E1 :: transition (Automate *automate, Symbol *s)
 {
-	switch (*s)
+
+	std::cout << this->getName() << std::endl; switch (*s)
 	{
 		case dol:
 			//We got to the end of the file so we're finished
@@ -51,7 +53,7 @@ bool E1 :: transition (Automate *automate, Symbol *s)
 bool E2 :: transition (Automate *automate, Symbol *s)
 {
 	Symbol* li = new Li(Lie); //We create a new Symbol Li in order to push it to the stack.
-	switch ((int)*s)
+	std::cout << this->getName() << std::endl; switch ((int)*s)
 	{
 		case Lie:
 			automate->shift(s, new E3());
@@ -81,7 +83,10 @@ bool E2 :: transition (Automate *automate, Symbol *s)
 
 
 bool E3 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	Symbol* li;
+	Symbol* ld;
+	Symbol* p = new P(Pe);
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Ie:
 			automate->shift(s, new E7());
 			break;
@@ -94,6 +99,13 @@ bool E3 :: transition (Automate *automate, Symbol *s){
 		case id :
 			automate->shift(s, new E10());
 			break;
+		case dol :
+			ld = automate->popS();
+			li = automate->popS();
+			p->addSymbolToList(li);
+			p->addSymbolToList(ld);
+			automate->reduce(p,2);
+			automate->getStateStackTop()->transition(automate,s);
 		default:
 			break;
 	}
@@ -103,7 +115,7 @@ bool E3 :: transition (Automate *automate, Symbol *s){
 
 
 bool E4 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case pv:
 			automate->shift(s, new E11());
 			break;
@@ -116,7 +128,7 @@ bool E4 :: transition (Automate *automate, Symbol *s){
 
 
 bool E5 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case id:
 			automate->shift(s, new E12());
 			break;
@@ -129,7 +141,7 @@ bool E5 :: transition (Automate *automate, Symbol *s){
 
 
 bool E6 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case id:
 			automate->shift(s, new E13());
 			break;
@@ -142,7 +154,7 @@ bool E6 :: transition (Automate *automate, Symbol *s){
 
 
 bool E7 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case pv:
 			automate->shift(s, new E14());
 			break;
@@ -155,7 +167,7 @@ bool E7 :: transition (Automate *automate, Symbol *s){
 
 
 bool E8 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case id:
 			automate->shift(s, new E15());
 			break;
@@ -168,7 +180,7 @@ bool E8 :: transition (Automate *automate, Symbol *s){
 
 
 bool E9 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Ee:
 			automate->shift(s, new E16());
 			break;
@@ -190,7 +202,7 @@ bool E9 :: transition (Automate *automate, Symbol *s){
 
 
 bool E10 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case af:
 			automate->shift(s, new E20());
 			break;
@@ -207,7 +219,7 @@ bool E11 :: transition (Automate *automate, Symbol *s){
 	Symbol* D;
 	Symbol* firstLd;
 	Symbol* ld = new Ld(Lde);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		//We do the exact same thing if we encounter id, r, w, v or c.
 		//We pop 3 symbols and reduce Ld.
 	case id:
@@ -235,7 +247,7 @@ bool E11 :: transition (Automate *automate, Symbol *s){
 
 bool E12 :: transition (Automate *automate, Symbol *s){
 	Symbol* lid = new Lid(Lide);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Lide:
 			automate->shift(s, new E21());
 			break;
@@ -253,7 +265,7 @@ bool E12 :: transition (Automate *automate, Symbol *s){
 
 
 bool E13 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case e:
 			automate->shift(s, new E22());
 			break;
@@ -270,7 +282,7 @@ bool E14 :: transition (Automate *automate, Symbol *s){
 	Symbol* i;
 	Symbol* pv;
 	Symbol* li = new Li(Lie);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case id:
 		case r:
 		case w:
@@ -296,7 +308,7 @@ bool E15 :: transition (Automate *automate, Symbol *s){
 	Symbol* r;
 	Symbol* id;
 	Symbol* i = new I(Ie);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case pv:
 			id = automate->popS();
 			r = automate->popS();
@@ -317,7 +329,7 @@ bool E16 :: transition (Automate *automate, Symbol *s){
 	Symbol* w;
 	Symbol* e;
 	Symbol* i = new I(Ie);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 			automate->shift(s, new E23());
 			break;
@@ -347,7 +359,7 @@ bool E16 :: transition (Automate *automate, Symbol *s){
 
 
 bool E17 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case pl:
 			automate->shift(s, new E17());
 			break;
@@ -371,7 +383,7 @@ bool E17 :: transition (Automate *automate, Symbol *s){
 bool E18 :: transition (Automate *automate, Symbol *s){
 	Symbol* id;
 	Symbol* e = new Exp(Ee);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 		case ss:
 		case mul:
@@ -394,7 +406,7 @@ bool E18 :: transition (Automate *automate, Symbol *s){
 bool E19 :: transition (Automate *automate, Symbol *s){
 	Symbol* n;
 	Symbol* e = new Exp(Ee);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 		case ss:
 		case mul:
@@ -415,7 +427,7 @@ bool E19 :: transition (Automate *automate, Symbol *s){
 
 
 bool E20 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Ee:
 			automate->shift(s, new E28());
 			break;
@@ -441,7 +453,7 @@ bool E21 :: transition (Automate *automate, Symbol *s){
 	Symbol* id;
 	Symbol* lid;
 	Symbol* d = new D(De);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case vi:
 			automate->shift(s, new E29());
 			break;
@@ -464,7 +476,7 @@ bool E21 :: transition (Automate *automate, Symbol *s){
 
 
 bool E22 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case n :
 			automate->shift(s, new E30());
 			break;
@@ -477,7 +489,7 @@ bool E22 :: transition (Automate *automate, Symbol *s){
 
 
 bool E23 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Ee:
 			automate->shift(s, new E31());
 			break;
@@ -499,7 +511,7 @@ bool E23 :: transition (Automate *automate, Symbol *s){
 
 
 bool E24 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Ee:
 			automate->shift(s, new E31());
 			break;
@@ -521,7 +533,7 @@ bool E24 :: transition (Automate *automate, Symbol *s){
 
 
 bool E25 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Ee:
 			automate->shift(s, new E31());
 			break;
@@ -543,7 +555,7 @@ bool E25 :: transition (Automate *automate, Symbol *s){
 
 
 bool E26 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case Ee:
 			automate->shift(s, new E31());
 			break;
@@ -565,7 +577,7 @@ bool E26 :: transition (Automate *automate, Symbol *s){
 
 
 bool E27 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 			automate->shift(s, new E23());
 			break;
@@ -594,7 +606,7 @@ bool E28 :: transition (Automate *automate, Symbol *s){
 	Symbol* af;
 	Symbol* e;
 	Symbol* i = new I(Ie);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 			automate->shift(s, new E23());
 			break;
@@ -626,7 +638,7 @@ bool E28 :: transition (Automate *automate, Symbol *s){
 
 
 bool E29 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case id:
 			automate->shift(s, new E35());
 			break;
@@ -640,7 +652,7 @@ bool E29 :: transition (Automate *automate, Symbol *s){
 
 bool E30 :: transition (Automate *automate, Symbol *s){
 	Symbol* lcst = new Lcst(Lcste);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case vi:
 		case pv:
 			automate->reduce(lcst, 0);
@@ -663,7 +675,7 @@ bool E31 :: transition (Automate *automate, Symbol *s){
 	Symbol* op;
 	Symbol* e2;
 	Symbol* expr = new Exp(Ee);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 		case ss:
 		case pr:
@@ -696,7 +708,7 @@ bool E32 :: transition (Automate *automate, Symbol *s){
 	Symbol* op;
 	Symbol* e2;
 	Symbol* expr = new Exp(Ee);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 		case ss:
 		case pr:
@@ -729,7 +741,7 @@ bool E33 :: transition (Automate *automate, Symbol *s){
 	Symbol* op;
 	Symbol* e2;
 	Symbol* expr = new Exp(Ee);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 		case ss:
 		case mul:
@@ -758,7 +770,7 @@ bool E34 :: transition (Automate *automate, Symbol *s){
 	Symbol* op;
 	Symbol* e2;
 	Symbol* expr = new Exp(Ee);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 		case ss:
 		case mul:
@@ -787,7 +799,8 @@ bool E35 :: transition (Automate *automate, Symbol *s){
 	Symbol* virg; // Different name because else, it has the same name as vi enum
 	Symbol* id;
 	Symbol* lid = new Lid(Lide);
-	switch (*s){
+	std::cout << this->getName() << std::endl;
+        switch (*s){
 		case vi:
 		case pv:
 			id = automate->popS();
@@ -814,7 +827,7 @@ bool E36 :: transition (Automate *automate, Symbol *s){
 	Symbol* n;
 	Symbol* lcstb;
 	Symbol* lcst = new Lcst(Lcste);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case vi:
 			automate->shift(s, new E37());
 			break;
@@ -841,7 +854,7 @@ bool E36 :: transition (Automate *automate, Symbol *s){
 
 
 bool E37 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case id:
 			automate->shift(s, new E38());
 			break;
@@ -854,7 +867,7 @@ bool E37 :: transition (Automate *automate, Symbol *s){
 
 
 bool E38 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case e:
 			automate->shift(s, new E39());
 			break;
@@ -867,7 +880,7 @@ bool E38 :: transition (Automate *automate, Symbol *s){
 
 
 bool E39 :: transition (Automate *automate, Symbol *s){
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case n:
 			automate->shift(s, new E40());
 			break;
@@ -886,7 +899,7 @@ bool E40 :: transition (Automate *automate, Symbol *s){
 	Symbol* e;
 	Symbol* n;
 	Symbol* lcst = new Lcst(Lcste);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case vi:
 		case pv:
 			n = automate->popS();
@@ -915,7 +928,7 @@ bool E41 :: transition (Automate *automate, Symbol *s){
 	Symbol* e;
 	Symbol* pri;
 	Symbol* expr = new Exp(Ee);
-	switch (*s){
+	std::cout << this->getName() << std::endl; switch (*s){
 		case add:
 		case ss:
 		case mul:
