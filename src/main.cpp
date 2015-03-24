@@ -27,7 +27,7 @@ void print_error(int id)
 
 int main(int argc, char *argv[])
 {
-    
+    /*
     namespace po = boost::program_options;
     po::options_description desc("Options");
     std::string content;
@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("analyse"))
     {
+
         //analyse statique
     }
     
@@ -92,6 +93,11 @@ int main(int argc, char *argv[])
 
     if (vm.count("execution"))
     {
+
+        //reduction
+    }*/
+    
+    /*Automate* tomate = new Automate();
         //execution
     }
 
@@ -114,5 +120,19 @@ int main(int argc, char *argv[])
         e->transition(tomate, *iteSymb);
     }*/
 
+    
+
     return 0;
 }
+
+string display_program(list<Symbol*> listSymb)
+{
+    string result ="";
+    list<Symbol*>::iterator ite;
+    for(ite = listSymb.begin();ite != listSymb.end();++ite)
+    {
+        result += *ite->to_string();
+    }
+    return result;
+}
+
