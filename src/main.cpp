@@ -75,25 +75,24 @@ int main(int argc, char *argv[])
 
     // gestion des arguments
 
+    if (vm.count("analyse"))
+    {
+        //analyse statique
+    }
+    
+    if (vm.count("transformation"))
+    {
+        //reduction
+    }
+    
     if (vm.count("print"))
     {
         // Affichage du programme
     }
 
-    if (vm.count("analyse"))
-    {
-        
-        //analyse statique
-    }
-
     if (vm.count("execution"))
     {
         //execution
-    }
-
-    if (vm.count("transformation"))
-    {
-        //reduction
     }
 
     /*
