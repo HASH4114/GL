@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("analyse"))
     {
+        
         //analyse statique
     }
 

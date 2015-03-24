@@ -91,28 +91,42 @@ public:
 	virtual ~Exp(){}
 };
 
-class Variable:public Exp{
-public:
-	Variable(int id):Exp(id){}
-	virtual ~Variable(){}
-};
 
-class Constante:public Exp{
-public:
-	Constante(int id):Exp(id){}
-	virtual ~Constante(){}
-};
-
-class Nombre:public Exp{
-public:
-	Nombre(int id):Exp(id){}
-	virtual ~Nombre(){}
-};
 
 class ExpUnaire:public Exp{
 public:
 	ExpUnaire(int id):Exp(id){}
 	virtual ~ExpUnaire(){}
+};
+
+class ExpParD:public ExpUnaire{
+public:
+	ExpParD(int id):ExpUnaire(id){}
+	virtual ~ExpParD(){}
+};
+
+class ExpParG:public ExpUnaire{
+public:
+	ExpParG(int id):ExpUnaire(id){}
+	virtual ~ExpParG(){}
+};
+
+class ExpEg:public ExpUnaire{
+public:
+	ExpEg(int id):ExpUnaire(id){}
+	virtual ~ExpEg(){}
+};
+
+class ExpVir:public ExpUnaire{
+public:
+	ExpVir(int id):ExpUnaire(id){}
+	virtual ~ExpVir(){}
+};
+
+class ExpPv:public ExpUnaire{
+public:
+	ExpPv(int id):ExpUnaire(id){}
+	virtual ~ExpPv(){}
 };
 
 class ExpBinaire:public Exp{
@@ -145,8 +159,38 @@ public:
 	virtual ~ExpMoins(){}
 };
 
+class R:public I{
+public:
+	R(int id):I(id){}
+	virtual ~R() {}
+private:
+	//Variable var;
+};
+
+class W:public I{
+public:
+	W(int id):I(id){}
+	virtual ~W() {}
+private:
+	//Variable var;
+	//Constante cons;
+};
+
+class Aff:public I{
+public:
+	Aff(int id):I(id){}
+	virtual ~Aff() {}
+private:
+	//Variable var;
+};
+
+
+//Retravailler
+
+
 class DVar:public D{
 public:
+	DVar(int id):D(id){}
 	DVar(int id,string name, int val) : D(id),name(name),value(val){}
 	void read();
 	void write();
@@ -158,42 +202,47 @@ private:
 
 class DConst:public D{
 public:
-
+	DConst(int id):D(id){}
 	DConst(int id,string name,int val): D(id),name(name),value(val) {}
 	void read();
 	virtual ~DConst() {}
 private:
 	string name;
-	const int value;
-};
-/*
-class R:public I{
-public:
-	R(int id):I(id){}
-	virtual ~R() {}
-private:
-	Variable var;
+	int value;
 };
 
-class W:public I{
+//var
+class Variable:public Exp{
 public:
-	W(int id):I(id){}
-	virtual ~W() {}
-private:
-	Variable var;
-	Constante cons;
+	Variable(int id):Exp(id){}
+	virtual ~Variable(){}
 };
-
-class Aff:public I{
+//const
+class Constante:public Exp{
 public:
-	Aff(int id):I(id){}
-	virtual ~Aff() {}
+	Constante(int id):Exp(id){}
+	virtual ~Constante(){}
+};
+//id
+class Id:public Symbol{
+public:
+	Id(int id): Symbol(id){}
+	Id(int id,string name): Symbol(id),name(name){}
+	string getName(){return name;}
+	virtual ~Id(){}
 private:
-	Variable var;
-};*/
-
-
-
+	string name;
+};
+//nb
+class Nombre:public Exp{
+public:
+	Nombre(int id):Exp(id){}
+	Nombre(int id,int val):Exp(id),val(val){}
+	int getVal(){return val;}
+	virtual ~Nombre(){}
+private:
+	int val;
+};
 
 
 #endif
