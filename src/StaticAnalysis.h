@@ -11,7 +11,11 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/constants.hpp>
+#include <boost/regex.hpp>
+#include <regex>
+#include <typeinfo>
 #include "Symbol.h"
+#include "Symbols.h"
 
 class StaticAnalysis
 {

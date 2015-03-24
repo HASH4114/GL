@@ -82,6 +82,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("analyse"))
     {
+        
         //analyse statique
     }
 
@@ -112,7 +113,7 @@ int main(int argc, char *argv[])
         e = tomate->getStateStackTop();
         std::cout << e->getName() << std::endl ;
         e->transition(tomate, *iteSymb);
-    }
+    }*/
 
-    return 0;*/
+    return 0;
 }
