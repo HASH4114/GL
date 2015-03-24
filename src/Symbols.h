@@ -209,7 +209,7 @@ private:
 
 //Retravailler
 
-
+//execution et analyse statique
 class DVar:public D{
 public:
 	DVar(int id):D(id){}
@@ -222,7 +222,7 @@ private:
 	string name;
 	int value;
 };
-
+//execution et analyse statique
 class DConst:public D{
 public:
 	DConst(int id):D(id){}

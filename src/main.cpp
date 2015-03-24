@@ -5,6 +5,8 @@
 
 #include "Etats.h"
 #include "Expr.h"
+#include "Parseur.h"
+
 
 #include "boost/program_options.hpp"
 
@@ -25,9 +27,27 @@ void print_error(int id)
     }
 }
 
+//Option diplay program
+string display_program(Symbol* p)
+{
+
+    list<Symbol*> listSymb = p->getListSymbol(); //
+
+
+    string result ="";
+    list<Symbol*>::iterator ite;
+    for(ite = listSymb.begin();ite != listSymb.end();++ite)
+    {
+        result += (*ite)->to_string();
+    }
+    return result;
+}
+
+
 int main(int argc, char *argv[])
 {
-    /*
+
+    
     namespace po = boost::program_options;
     po::options_description desc("Options");
     std::string content;
@@ -71,7 +91,17 @@ int main(int argc, char *argv[])
     }
 
     content.assign( (std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()) );
-
+    Automate* tomate = new Automate();
+    Etat* e;
+    Parseur parseur(content);
+    Symbol* symbol;
+    do
+    {
+        symbol = parseur.getNextSymbole();
+        e = tomate->getStateStackTop();
+        std::cout << e->getName() << std::endl ;
+        e->transition(tomate, symbol);
+    }while(symbol->getId() != dol);
 
     // gestion des arguments
 
@@ -95,13 +125,13 @@ int main(int argc, char *argv[])
     {
 
         //reduction
-    }*/
+    }
     
     /*Automate* tomate = new Automate();
         //execution
-    }*/
+    }
 
-    
+    /*
     Automate* tomate = new Automate();
     list<int> listTest = {v,id,vi,id,vi,id,pv,c,id,e,n,pv,c,id,e,n,pv,v,id,pv,id,af,pl,id,add,id,pr,mul,n,ss,n,pv};
     list<Symbol*> listSymb;
@@ -120,19 +150,10 @@ int main(int argc, char *argv[])
         e->transition(tomate, *iteSymb);
     }
 
-    
-
+    display_program(tomate->getSymbolStackTop());
+*/
     return 0;
 }
 
-string display_program(list<Symbol*> listSymb)
-{
-    string result ="";
-    list<Symbol*>::iterator ite;
-    for(ite = listSymb.begin();ite != listSymb.end();++ite)
-    {
-        result += (*ite)->to_string();
-    }
-    return result;
-}
+
 

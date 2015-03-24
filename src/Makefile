@@ -4,7 +4,7 @@
 .SUFFIXES:
 
 
-sourcefiles = main.cpp Etats.cpp Automate.cpp Symbols.cpp
+sourcefiles = main.cpp Etats.cpp Automate.cpp Symbols.cpp Parseur.cpp Regex.cpp
 progname= Analyseur
 CC=g++
 CFLAGS=-g -std=c++11

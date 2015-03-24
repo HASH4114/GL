@@ -80,7 +80,7 @@ Symbol* Parseur::getNextSymbole(){
 	}
 	return resultat;
 }
-
+/*
 int main()
 {
 	std::string content = "var y,u; const c = 5;";
@@ -90,5 +90,5 @@ int main()
 		std::cout << *p.getNextSymbole() << std::endl;		
 		i++;
 	}
-}
+}*/
 
