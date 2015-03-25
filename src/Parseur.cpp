@@ -1,5 +1,7 @@
 #include "Parseur.h"
 
+#include <boost/lexical_cast.hpp>
+
 Parseur::Parseur(std::string content)
 {
 	Parseur::content = content;
@@ -70,7 +72,7 @@ Symbol* Parseur::getNextSymbole(){
 			resultat = new Id(id, results.word);
 			break;
 		case 14 : // nb
-			resultat = new Nombre(n, std::stoi(results.word));
+			resultat = new Nombre(n, boost::lexical_cast<int>(results.word));
 			break;
 		case 15 : // :=
  	 		resultat = new Aff(af);

@@ -3,6 +3,8 @@
 
 
 #include <string>
+#include <boost/lexical_cast.hpp>
+
 #include "Symbol.h"
 
 using namespace std;
@@ -265,7 +267,7 @@ class Nombre:public Exp{
 public:
 	Nombre(int id):Exp(id){}
 	Nombre(int id,int val):Exp(id),val(val){}
-	string to_string(){return std::to_string(val);}
+	string to_string(){return boost::lexical_cast<string>(val);}
 	int getVal(){return val;}
 	virtual ~Nombre(){}
 private:

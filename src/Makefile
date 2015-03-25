@@ -7,7 +7,7 @@
 sourcefiles = main.cpp Etats.cpp Automate.cpp Symbols.cpp Parseur.cpp Regex.cpp
 progname= Analyseur
 CC=g++
-CFLAGS=-g -std=c++11
+CFLAGS=-g -std=c++11 
 LIBS= -lboost_regex -lboost_program_options
 INC_PATH=-I/usr/local/include
 

@@ -37,14 +37,16 @@ string display_program(Symbol* p)
     for (it = listSymb.begin(); it!=listSymb.end() ; ++it)
     {
         tmp = (*it)->getListSymbol();
-        listSymb.insert(it,tmp.begin(),tmp.end());
+        //it = listSymb.insert(it,tmp.begin(),tmp.end());
+        
+        std::cout<<listSymb.size()<<std::endl;
     }
 
     string result ="";
     list<Symbol*>::iterator ite;
     for(ite = listSymb.begin();ite != listSymb.end();++ite)
     {
-        std::cout<< "i'm in da loop ! "<<std::endl;
+        std::cout<< "i'm in da loop ! " <<std::endl;
         result += (*ite)->to_string();
     }
     return result;
