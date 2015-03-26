@@ -270,7 +270,7 @@ public:
 	string to_string(){return boost::lexical_cast<string>(val);}
 	int getVal(){return val;}
 	virtual ~Nombre(){}
-private:
+private:    
 	int val;
 };
 

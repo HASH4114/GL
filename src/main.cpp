@@ -27,6 +27,22 @@ void print_error(int id)
     }
 }
 
+void display_program_recursive(Symbol* p)
+{
+    list<Symbol*> listSymbol = p->getListSymbol();
+    list<Symbol*>::iterator ite;
+    
+    for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
+    {
+        if((*ite)->getListSymbol().empty())
+        {
+            std::cout<<(*ite)->to_string();
+        }else{
+            display_program_recursive(*ite);
+        }
+    }
+}
+
 //Option diplay program
 string display_program(Symbol* p)
 {
@@ -37,8 +53,9 @@ string display_program(Symbol* p)
     for (it = listSymb.begin(); it!=listSymb.end() ; ++it)
     {
         tmp = (*it)->getListSymbol();
-        //it = listSymb.insert(it,tmp.begin(),tmp.end());
-        
+        if(!tmp.empty()){
+            it = listSymb.insert(it,tmp.begin(),tmp.end());
+        }
         std::cout<<listSymb.size()<<std::endl;
     }
 
@@ -129,7 +146,7 @@ int main(int argc, char *argv[])
     if (vm.count("print"))
     {
         std::cout << "Enter in display_program"<<std::endl;
-        std::cout<<display_program(tomate->getSymbolStackTop());
+        display_program_recursive(tomate->getSymbolStackTop());
         // Affichage du programme
     }
 
