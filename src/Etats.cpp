@@ -860,7 +860,7 @@ bool E36 :: transition (Automate *automate, Symbol *s){
 	Symbol* e;
 	Symbol* n;
 	Symbol* lcstb;
-	Symbol* lcst = new Lcst(Lcste);
+	Symbol* d = new D(De);
 	//std::cout << this->getName() << std::endl; 
         switch (*s){
 		case vi:
@@ -872,12 +872,12 @@ bool E36 :: transition (Automate *automate, Symbol *s){
 			e = automate->popS();
 			id = automate->popS();
 			c = automate->popS();
-			lcst->addSymbolToList(c);
-			lcst->addSymbolToList(id);
-			lcst->addSymbolToList(e);
-			lcst->addSymbolToList(n);
-			lcst->addSymbolToList(lcstb);
-			automate->reduce(lcst,5);
+			d->addSymbolToList(c);
+			d->addSymbolToList(id);
+			d->addSymbolToList(e);
+			d->addSymbolToList(n);
+			d->addSymbolToList(lcstb);
+			automate->reduce(d,5);
 			automate->getStateStackTop()->transition(automate,s);
 			break;
 		default:

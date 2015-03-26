@@ -11,32 +11,32 @@ using namespace std;
 
 /*
 		Explanation of the enum
-	id 	: name of the variable
-	add : replace +
-	ss 	: replace -
-	mul	: replace *
-	dv	: replace /
-	pl 	: replace (
-	pr  : replace )
-	r 	: stands for read
-	w 	: stands for write
-	v 	: stands for var
-	c 	: stands for const
-	vi 	: replace the ,
-	pv	: replace ;
-	e 	: replace =
-	n 	: value of the variable or the constant
-	af	: replace :=
-	$	: the end.
-	Ppe	: P'
-	Pe 	: the program
-	Lde	: List of declarations
-	Lie	: List of instructions
-	De 	: A declaration
-	Ie 	: An instruction
-	Ee 	: An expression
-	Lcste: List of constants delarations
-	Lide: List of id
+	0 id 	: name of the variable
+	1 add : replace +
+	2 ss 	: replace -
+	3 mul	: replace *
+	4 dv	: replace /
+	5 pl 	: replace (
+	6 pr  : replace )
+	7 r 	: stands for read
+	8 w 	: stands for write
+	9 v 	: stands for var
+	10 c 	: stands for const
+	11 vi 	: replace the ,
+	12 pv	: replace ;
+	13 e 	: replace =
+	14 n 	: value of the variable or the constant
+	15 af	: replace :=
+	16 $	: the end.
+	17 Ppe	: P'
+	18 Pe 	: the program
+	19 Lde	: List of declarations
+	20 Lie	: List of instructions
+	21 De 	: A declaration
+	22 Ie 	: An instruction
+	23 Ee 	: An expression
+	24 Lcste: List of constants delarations
+	25 Lide: List of id
 */
 
 enum SymbolEnum {id,add,ss,mul,dv,pl,pr,r,w,v,c,vi,pv,e,n,af,dol,Ppe,Pe,Lde,Lie,De,Ie,Ee,Lcste,Lide};
