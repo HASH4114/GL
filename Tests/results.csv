@@ -1,6 +1,6 @@
 Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
-01.NoArgument;Ok;Non testé;Echec;Non testé;Echec
-02.FichierInexistant;Echec;Non testé;Echec;Non testé;Echec
+01.NoArgument;Echec;Non testé;Ok;Non testé;Echec
+02.FichierInexistant;Echec;Non testé;Ok;Non testé;Echec
 03.FichierExistant;Ok;Non testé;Non testé;Non testé;Ok
 04.Affichage;Ok;Echec;Non testé;Non testé;Echec
 05.DoubleDeclaration;Ok;Non testé;Echec;Non testé;Echec
