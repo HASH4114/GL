@@ -1,1 +1,1 @@
-../lut -o -p ../files/neutres.lt
+../../bin/Analyseur -o -p ../files/neutres.lt

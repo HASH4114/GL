@@ -1,1 +1,1 @@
-../lut -a ../files/nondeclared.lt
+../../bin/Analyseur -a ../files/nondeclared.lt

@@ -1,1 +1,1 @@
-../lut -a ../files/static2.lt
+../../bin/Analyseur -a ../files/static2.lt

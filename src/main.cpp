@@ -43,33 +43,6 @@ void display_program_recursive(Symbol* p)
     }
 }
 
-//Option diplay program
-string display_program(Symbol* p)
-{
-
-    list<Symbol*> listSymb = p->getListSymbol(); //
-    list<Symbol*> tmp;
-    list<Symbol*>::iterator it;
-    for (it = listSymb.begin(); it!=listSymb.end() ; ++it)
-    {
-        tmp = (*it)->getListSymbol();
-        if(!tmp.empty()){
-            it = listSymb.insert(it,tmp.begin(),tmp.end());
-        }
-        std::cout<<listSymb.size()<<std::endl;
-    }
-
-    string result ="";
-    list<Symbol*>::iterator ite;
-    for(ite = listSymb.begin();ite != listSymb.end();++ite)
-    {
-        std::cout<< "i'm in da loop ! " <<std::endl;
-        result += (*ite)->to_string();
-    }
-    return result;
-}
-
-
 int main(int argc, char *argv[])
 {
 
@@ -97,7 +70,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("help"))
     {
-        std::cout << "Usage : " << argv[0] << " [-h,--help|-p,--print|-a,--analyse|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
+        std::cout << "Usage : " << argv[0] << "[-h,--help|-p,--print|-a,--analyse|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
         std::cout << desc << std::endl;
         return 0;
     }
@@ -124,9 +97,7 @@ int main(int argc, char *argv[])
     do
     {
         symbol = parseur.getNextSymbole();
-        std::cout<<symbol->to_string();
         e = tomate->getStateStackTop();
-        //std::cout << e->getName() << std::endl ; //Affichage des états
         e->transition(tomate, symbol);
     }while(symbol->getId() != dol);
 
@@ -145,7 +116,6 @@ int main(int argc, char *argv[])
 
     if (vm.count("print"))
     {
-        std::cout << "Enter in display_program"<<std::endl;
         display_program_recursive(tomate->getSymbolStackTop());
         // Affichage du programme
     }

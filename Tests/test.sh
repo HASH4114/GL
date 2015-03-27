@@ -6,10 +6,10 @@ if [ "$1" = "" ]
 then
   echo "No directory given, default to current"
   Directory="."
-else  
+else
   echo "| Test id : $1"
   if [ -d "$1" ]
-  then 
+  then
      Directory="$1"
   else
      echo "$1 is not a directory. Exiting."
@@ -20,7 +20,7 @@ fi
 cd $Directory
 
 if [ -r "description" ]
-then 
+then
   echo "-----------------------------------------------------------"
   echo "Description :"
   fold -w 60 -s description
@@ -43,19 +43,19 @@ echo $sRun
 
 # stdin has been specified
 if [ -r "std.in" ]
-then 
+then
   sRun="$sRun <std.in"
 fi
 
 # stdout has been specified
 if [ -r "std.out" ]
-then 
+then
   sRun="$sRun >temp.txt"
 fi
 
 # stderr has been specified
 if [ -r "stderr.out" ]
-then 
+then
   sRun="$sRun 2>temperr.txt"
 fi
 
@@ -68,7 +68,7 @@ resultGlobal="Ok"
 # compare return code if concerned
 resultRC="Non testé"
 if [ -r "returncode" ]
-then 
+then
   if [ "$returnCode" = `cat returncode` ]
   then
     echo "                                       Return Code : PASSED"
@@ -83,7 +83,7 @@ fi
 # compare stdout if concerned
 resultOut="Non testé"
 if [ -r "std.out" ]
-then 
+then
   diff -wB temp.txt std.out >/dev/null
   if [ $? -eq 0 ]
   then
@@ -101,7 +101,7 @@ fi
 # compare stderr if concerned
 resultErr="Non testé"
 if [ -r "stderr.out" ]
-then 
+then
   diff -wB temperr.txt stderr.out >/dev/null
   if [ $? -eq 0 ]
   then
@@ -134,9 +134,9 @@ then
         echo "                                       File #$number     : FAILED"
         resultFiles="Echec"
         resultGlobal="Echec"
-      fi  
+      fi
       rm $fileName
-    else  
+    else
       echo "                                       File #$number     : FAILED"
       resultFiles="Echec"
       resultGlobal="Echec"
@@ -157,7 +157,7 @@ else
   echo "                                       Global      : PASSED"
 fi
 echo "-----------------------------------------------------------"
-echo 
+echo
 
 cd $execDir
 

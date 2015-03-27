@@ -1,2 +1,1 @@
-../lut ../files/synerror.lt
-
+../../bin/Analyseur ../files/synerror.lt

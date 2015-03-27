@@ -1,1 +1,1 @@
-../lut -p ../files/correct.lt
+../../bin/Analyseur -p ../files/correct.lt
