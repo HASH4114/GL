@@ -6,6 +6,7 @@
 #include "Etats.h"
 #include "Expr.h"
 #include "Parseur.h"
+#include "StaticAnalysis.h"
 
 
 #include "boost/program_options.hpp"
@@ -42,33 +43,6 @@ void display_program_recursive(Symbol* p)
         }
     }
 }
-
-//Option diplay program
-string display_program(Symbol* p)
-{
-
-    list<Symbol*> listSymb = p->getListSymbol(); //
-    list<Symbol*> tmp;
-    list<Symbol*>::iterator it;
-    for (it = listSymb.begin(); it!=listSymb.end() ; ++it)
-    {
-        tmp = (*it)->getListSymbol();
-        if(!tmp.empty()){
-            it = listSymb.insert(it,tmp.begin(),tmp.end());
-        }
-        std::cout<<listSymb.size()<<std::endl;
-    }
-
-    string result ="";
-    list<Symbol*>::iterator ite;
-    for(ite = listSymb.begin();ite != listSymb.end();++ite)
-    {
-        std::cout<< "i'm in da loop ! " <<std::endl;
-        result += (*ite)->to_string();
-    }
-    return result;
-}
-
 
 int main(int argc, char *argv[])
 {
@@ -124,7 +98,7 @@ int main(int argc, char *argv[])
     do
     {
         symbol = parseur.getNextSymbole();
-        std::cout<<symbol->to_string();
+        //std::cout<<symbol->to_string();
         e = tomate->getStateStackTop();
         //std::cout << e->getName() << std::endl ; //Affichage des états
         e->transition(tomate, symbol);
@@ -134,8 +108,9 @@ int main(int argc, char *argv[])
 
     if (vm.count("analyse"))
     {
-
-        //analyse statique
+    	//analyse statique
+    	StaticAnalysis sa;
+    	sa.Analysis(tomate->getSymbolStackTop());
     }
 
     if (vm.count("transformation"))

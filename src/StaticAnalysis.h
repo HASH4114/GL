@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <set>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -20,12 +21,14 @@
 class StaticAnalysis
 {
 	public:
-		StaticAnalysis(std::string fileName);
+		StaticAnalysis();
 		virtual ~StaticAnalysis();
-		void Analysis();
+		void Analysis(Symbol* p);
 	private:
 		std::map<std::string, Symbol*> varValue;		//Table des symboles
 		std::string fileName;
+		std::list<Symbol*> listSymbol;
+		void getAllSymbols(Symbol* p);
 };
 
 #endif

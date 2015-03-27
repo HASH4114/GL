@@ -1,9 +1,119 @@
 #include "StaticAnalysis.h"
 
-StaticAnalysis::StaticAnalysis(std::string fName) : fileName(fName){}
+StaticAnalysis::StaticAnalysis(){}
 
-void StaticAnalysis::Analysis(){
-	std::ifstream ifs(fileName);
+void StaticAnalysis::getAllSymbols(Symbol* p){
+	std::list<Symbol*> symbolList = p->getListSymbol();
+	std::list<Symbol*>::iterator it;
+	for(std::list<Symbol*>::iterator it = symbolList.begin(); it != symbolList.end(); ++it){
+		if((*it)->getListSymbol().empty()){
+			listSymbol.push_back((*it));
+		}
+		else{
+			getAllSymbols(*it);
+		}
+	}
+}
+
+void StaticAnalysis::Analysis(Symbol* p){
+	std::set<std::string> unused;
+	getAllSymbols(p);
+	
+	// for(std::list<Symbol*>::iterator it = listSymbol.begin(); it != listSymbol.end(); ++it){
+	// 	std::cout << (*it)->to_string();
+	// }
+	
+	std::list<Symbol*>::iterator it = listSymbol.begin();
+
+	while (it != listSymbol.end()){
+		//If symbol is VAR
+			//it++
+			//while it is not pv
+				//New entry in map but linked to nothing
+				//Add this var in a set of unused var
+				//it++
+			//end while
+
+		if(typeid(**it) == typeid(Variable)){
+			it++;
+			while(typeid(**it) != typeid(ExpPv)){
+				if(typeid(**it) == typeid(Id)){
+					if(unused.find(((Id*)(*it))->getName()) == unused.end()){
+						unused.insert(((Id*)(*it))->getName());
+						varValue.insert(std::pair<std::string,Symbol*>(((Id*)(*it))->getName(),NULL));
+					}
+					else{
+						std::cout << "The variable " << ((Id*)(*it))->getName() << " already exists" << std::endl;
+					}
+				}
+				it++;
+			}
+		}
+		//If symbol is CONST
+			//it++
+			//while it is not pv
+				//Get the value of const
+				//New entry in map
+				//Add this const in a set of unused var
+				//it++
+			//end while
+		else if(typeid(**it) == typeid(Constante)){
+			it++;
+			while(typeid(**it) != typeid(ExpPv)){
+				if(typeid(**it) == typeid(Id)){
+					if(unused.find(((Id*)(*it))->getName()) == unused.end()){
+						unused.insert(((Id*)(*it))->getName());
+						Id* constant = (Id*)(*it);
+						it++;
+						it++;
+						varValue.insert(std::pair<std::string,Symbol*>(constant->getName(),new DConst(SymbolEnum::n, constant->getName(), ((Nombre*)(*it))->getVal())));
+					}
+					else{
+						std::cout << "The constant " << ((Id*)(*it))->getName() << " already exists" << std::endl;
+					}
+				}
+				it++;
+			}
+		}
+		//If symbol is ECRIRE
+			//it++
+			//while it is not pv
+				//See if VAR exists
+				//See if VAR has a value
+				//See if a VAR is used
+					//Remove it from set of unused var
+				//it++
+			//end while
+		else if(typeid(**it) == typeid(W)){
+			it++;
+			while(typeid(**it) != typeid(ExpPv)){
+				if(typeid(**it) == typeid(Id)){
+					if(varValue.find(((Id*)(*it))->getName()) == varValue.end()){
+						std::cout << "The variable " << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+					}else if(varValue.find(((Id*)(*it))->getName())->second == NULL){
+						std::cout << "The variable " << ((Id*)(*it))->getName() << " was not assigned" << std::endl;
+					}else{
+						//Remove it from set of unused var
+					}
+				}
+			}
+		}
+		else{
+			it++;
+		}
+		//If symbol is LIRE
+			//it++
+			//while it is not pv
+				//See if VAR exists
+				//See if it is not followed by a CONST
+				//it++
+			//end while
+			//continue
+		//If symbol is id
+			//Do the affectation + remove used var if there are some
+	}
+
+	/*std::ifstream ifs(fileName);
 	std::istringstream iss;
 	std::string sub;
 	std::string str;
@@ -96,17 +206,17 @@ void StaticAnalysis::Analysis(){
 					std::cout << "You can't assigned a value to the constant " << sub << std::endl;
 				}
 			}
-		}
+		}*/
 		//Go through the Symbol table and see if there are some var that were not used
-		for(std::map<std::string, Symbol*>::iterator it = varValue.begin(); it != varValue.end(); it++){
-			if(it->second == NULL){
-				std::cout << "The variable " << it->first << " was declared but never assigned" << std::endl;
-			}
-		}
-	}
+		// for(std::map<std::string, Symbol*>::iterator it = varValue.begin(); it != varValue.end(); it++){
+		// 	if(it->second == NULL){
+		// 		std::cout << "The variable " << it->first << " was declared but never assigned" << std::endl;
+		// 	}
+		// }
+	/*}
 	else{
 		std::cout<< "Unable to open the file" <<std::endl;
-	}
+	}*/
 }
 
 StaticAnalysis::~StaticAnalysis(){
@@ -114,8 +224,8 @@ StaticAnalysis::~StaticAnalysis(){
 
 }
 
-int main(void){
+/*int main(void){
 	StaticAnalysis sa("test.lt");
 	sa.Analysis();
 
-}
+}*/
