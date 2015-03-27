@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("help"))
     {
-        std::cout << "Usage : " << argv[0] << " [-h,--help|-p,--print|-a,--analyse|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
+        std::cout << "Usage : " << argv[0] << "[-h,--help|-p,--print|-a,--analyse|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
         std::cout << desc << std::endl;
         return 0;
     }
@@ -98,9 +98,7 @@ int main(int argc, char *argv[])
     do
     {
         symbol = parseur.getNextSymbole();
-        //std::cout<<symbol->to_string();
         e = tomate->getStateStackTop();
-        //std::cout << e->getName() << std::endl ; //Affichage des états
         e->transition(tomate, symbol);
     }while(symbol->getId() != dol);
 
@@ -120,7 +118,6 @@ int main(int argc, char *argv[])
 
     if (vm.count("print"))
     {
-        std::cout << "Enter in display_program"<<std::endl;
         display_program_recursive(tomate->getSymbolStackTop());
         // Affichage du programme
     }

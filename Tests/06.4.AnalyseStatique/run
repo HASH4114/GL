@@ -1,1 +1,1 @@
-../lut -a ../files/nondeclared.lt
+../../lut -a ../files/nondeclared.lt

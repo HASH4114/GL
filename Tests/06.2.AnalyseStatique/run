@@ -1,1 +1,1 @@
-../lut -a ../files/static2.lt
+../../lut ../files/static2.lt
