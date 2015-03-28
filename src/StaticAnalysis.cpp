@@ -15,8 +15,9 @@ void StaticAnalysis::getAllSymbols(Symbol* p){
 	}
 }
 
-void StaticAnalysis::Analysis(Symbol* p){
+bool StaticAnalysis::Analysis(Symbol* p){
 	std::set<std::string> unused;
+	bool status = true;
 	getAllSymbols(p);
 		
 	std::list<Symbol*>::iterator it = listSymbol.begin();
@@ -31,7 +32,7 @@ void StaticAnalysis::Analysis(Symbol* p){
 						varValue.insert(std::pair<std::string,Symbol*>(((Id*)(*it))->getName(),NULL));
 					}
 					else{
-						std::cout << "The variable " << ((Id*)(*it))->getName() << " already exists" << std::endl;
+						std::cerr << "The variable " << ((Id*)(*it))->getName() << " already exists" << std::endl;
 					}
 				}
 				it++;
@@ -50,7 +51,7 @@ void StaticAnalysis::Analysis(Symbol* p){
 						varValue.insert(std::pair<std::string,Symbol*>(constant->getName(),new DConst(SymbolEnum::n, constant->getName(), ((Nombre*)(*it))->getVal())));
 					}
 					else{
-						std::cout << "The constant " << ((Id*)(*it))->getName() << " already exists" << std::endl;
+						std::cerr << "The constant " << ((Id*)(*it))->getName() << " already exists" << std::endl;
 					}
 				}
 				it++;
@@ -63,9 +64,11 @@ void StaticAnalysis::Analysis(Symbol* p){
 				if(typeid(**it) == typeid(Id)){
 					std::map<std::string, Symbol*>::iterator found = varValue.find(((Id*)(*it))->getName());
 					if(found == varValue.end()){
-						std::cout << "The variable " << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+						std::cerr << "The variable " << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+						status = false;
 					}else if(found->second == NULL){
-						std::cout << "The variable " << ((Id*)(*it))->getName() << " was not assigned" << std::endl;
+						std::cerr << "The variable " << ((Id*)(*it))->getName() << " was not assigned" << std::endl;
+						status = false;
 					}else{
 						unused.erase(((Id*)(*it))->getName());
 					}
@@ -80,13 +83,15 @@ void StaticAnalysis::Analysis(Symbol* p){
 				if(typeid(**it) == typeid(Id)){
 					std::map<std::string, Symbol*>::iterator found = varValue.find(((Id*)(*it))->getName());
 					if(found == varValue.end()){
-						std::cout << "The variable " << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+						std::cerr << "The variable " << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+						status = false;
 					}
 					else if(found->second == NULL){
 						found->second = new DVar(SymbolEnum::n, ((Id*)(*it))->getName(), 0);
 					}
 					else if(typeid(found->second) == typeid(DConst)){
-						std::cout << ((Id*)(*it))->getName() << " is a constant" << std::endl;
+						std::cerr << ((Id*)(*it))->getName() << " is a constant" << std::endl;
+						status = false;
 					}
 				}
 				it++;
@@ -98,10 +103,12 @@ void StaticAnalysis::Analysis(Symbol* p){
 			std::map<std::string, Symbol*>::iterator affected = varValue.find(((Id*)(*it))->getName());
 			std::map<std::string, Symbol*>::iterator found;
 			if(affected == varValue.end()){
-				std::cout << "The variable " << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+				std::cerr << "The variable " << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+				status = false;
 			}
 			else if(typeid(affected->second) == typeid(DConst)){
-				std::cout << ((Id*)(*it))->getName() << " is a constant" << std::endl;
+				std::cerr << ((Id*)(*it))->getName() << " is a constant" << std::endl;
+				status = false;
 			}
 			else if(affected->second == NULL){
 				affected->second = new DVar(SymbolEnum::n, ((Id*)(*it))->getName(), 0);
@@ -111,7 +118,8 @@ void StaticAnalysis::Analysis(Symbol* p){
 				if(typeid(**it) == typeid(Id)){
 					found = varValue.find(((Id*)(*it))->getName());
 					if(found->second == NULL){
-						std::cout << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+						std::cerr << ((Id*)(*it))->getName() << " does not exist" << std::endl;
+						status = false;
 					}
 					else{
 						unused.erase(((Id*)(*it))->getName());
@@ -126,12 +134,13 @@ void StaticAnalysis::Analysis(Symbol* p){
 	}
 	for(std::map<std::string, Symbol*>::iterator ite = varValue.begin(); ite != varValue.end(); ite++){
 		if(ite->second == NULL){
-			std::cout << "The variable " << ite->first << " was declared but never assigned" << std::endl;
+			std::cerr << "The variable " << ite->first << " was declared but never assigned" << std::endl;
 		}
 	}
 	for(std::set<string>::iterator ite = unused.begin(); ite != unused.end(); ite++){
-		std::cout << *ite << " is not used" << std::endl;
+		std::cerr << *ite << " is not used" << std::endl;
 	}
+	return status;
 }
 
 StaticAnalysis::~StaticAnalysis(){
