@@ -19,4 +19,4 @@ all: $(sourcefiles) clean
 
 clean:
 	$(RM) $(progname)
-	$(RM) ../bin/$(progname)
+	$(RM) ../$(progname)

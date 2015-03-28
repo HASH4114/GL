@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     if(argc < 2 || (last != "-h" && last != "--help" && last[last.size()-1] == '-'))
     {
         print_error(1);
-        return 1;
+        return 127;
     }
 
     if (vm.count("help"))
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     {
         print_error(3);
         std::cerr << "Error: " << std::strerror(errno) << std::endl;
-        return 3;
+        return 1;
     }
 
     content.assign( (std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()) );
