@@ -23,7 +23,7 @@ class StaticAnalysis
 	public:
 		StaticAnalysis();
 		virtual ~StaticAnalysis();
-		void Analysis(Symbol* p);
+		bool Analysis(Symbol* p);
 	private:
 		std::map<std::string, Symbol*> varValue;		//Table des symboles
 		std::string fileName;
