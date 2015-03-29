@@ -1,7 +1,7 @@
 #include "Symbols.h"
 
 void Ld::execute() {
-	std::cout << "Execute Ld" << std::endl; 
+	// std::cout << "Execute Ld" << std::endl; 
 	list<Symbol*> listSymbol = this->getListSymbol();
     list<Symbol*>::iterator ite;
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
@@ -11,7 +11,7 @@ void Ld::execute() {
 }
 
 void Li::execute() {
-	std::cout << "Execute Li" << std::endl; 
+	// std::cout << "Execute Li" << std::endl; 
 	list<Symbol*> listSymbol = this->getListSymbol();
     list<Symbol*>::iterator ite;
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
@@ -24,7 +24,7 @@ void D::execute() {
 	list<Symbol*> listSymbol = this->getListSymbol();
     list<Symbol*>::iterator ite;
 	Symbol* type = *(listSymbol.begin());
-	std::cout << "D execute" << std::endl;
+	// std::cout << "D execute" << std::endl;
 	int value = 0;
 	// Faudra boucler : Appel a Lid et Lcst qui contiennent la même chose
 
@@ -48,7 +48,7 @@ void D::execute() {
 void Lcst::execute(){
 	list<Symbol*> listSymbol = this->getListSymbol();
     list<Symbol*>::iterator ite;
-	std::cout << "Lcste execute" << std::endl;
+	// std::cout << "Lcste execute" << std::endl;
 	int value = 0;
 
 	// on recherche la valeur
@@ -70,7 +70,7 @@ void Lcst::execute(){
 void Lid::execute(){
 	list<Symbol*> listSymbol = this->getListSymbol();
     list<Symbol*>::iterator ite;
-	std::cout << "Lid execute" << std::endl;
+	// std::cout << "Lid execute" << std::endl;
 
 	// on recherche le nom
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
@@ -148,67 +148,11 @@ double Exp::eval(){
 }
 
 void Variable::execute(std::string name, int){
-	std::cout << "Variable execute" << std::endl;
+	// std::cout << "Variable execute" << std::endl;
 	Execute::exec_variables.emplace(name, 0); // TODO check if rigth
 }
 
 void Constante::execute(std::string name, const int value){
-	std::cout << "Constante execute with " << name << " value " << value << std::endl;
+	// std::cout << "Constante execute with " << name << " value " << value << std::endl;
 	Execute::exec_const.emplace(name, value);
 }
-
-/*
-TODO :
-Handle execute for Variable / Constante
-handle execute for W / R / Aff
-
-D execute
-Not implemented Exp
-Not implemented Id
-Not implemented Lid
-
-Variable execute
-Variable execute
-D execute
-Not implemented Exp
-Not implemented Id
-Not implemented ExpEg
-Not implemented Nombre
-Not implemented Lcst
-Constante execute withc value 0
-Constante execute with= value 0
-Constante execute with4 value 0
-Constante execute with value 0
-D execute
-Not implemented Exp
-Not implemented Id
-Not implemented ExpEg
-Not implemented Nombre
-Not implemented Lcst
-Constante execute withd value 0
-Constante execute with= value 0
-Constante execute with6 value 0
-Constante execute with value 0
-D execute
-Not implemented Exp
-Not implemented Id
-Not implemented Lid
-Variable execute
-Variable execute
-Not implemented Id
-Not implemented Aff
-Not implemented Exp
-Not implemented R
-Not implemented Id
-Not implemented W
-Not implemented Exp
-Not implemented Id
-Not implemented Aff
-Not implemented Exp
-Not implemented W
-Not implemented Exp
-
-
-
-
-*/

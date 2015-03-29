@@ -32,7 +32,7 @@ bool StaticAnalysis::Analysis(Symbol* p){
 						varValue.insert(std::pair<std::string,Symbol*>(((Id*)(*it))->getName(),NULL));
 					}
 					else{
-						std::cerr << "la variable " << ((Id*)(*it))->getName() << " existe deja." << std::endl;
+						std::cerr << "la variable " << ((Id*)(*it))->getName() << " est deja declaree" << std::endl;
 					}
 				}
 				it++;
@@ -52,7 +52,7 @@ bool StaticAnalysis::Analysis(Symbol* p){
 						varValue.insert(std::pair<std::string,Symbol*>(constant->getName(),new DConst(SymbolEnum::n, constant->getName(), ((Nombre*)(*it))->getVal())));
 					}
 					else{
-						std::cerr << "la constante " << ((Id*)(*it))->getName() << " existe deja." << std::endl;
+						std::cerr << "la constante " << ((Id*)(*it))->getName() << " est deja declaree" << std::endl;
 					}
 				}
 				it++;
