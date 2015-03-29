@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <typeinfo>
 
 #include "Etats.h"
 #include "Expr.h"
@@ -42,6 +43,140 @@ void display_program_recursive(Symbol* p)
             display_program_recursive(*ite);
         }
     }
+}
+
+void neutralization_recursive(Symbol* p){
+  list<Symbol*> listSymbol = p->getListSymbol();
+  list<Symbol*>::iterator ite;
+  for (ite = listSymbol.begin(); ite != listSymbol.end(); ++ite)
+  {
+    //If the symbol is composed by other symbols
+    if (!(*ite)->getListSymbol().empty())
+    {
+      //If the symbol is an expression
+      if ((**ite) == Ee)
+      {
+
+        if ((*ite)->getListSymbol().size() == 3)
+        {
+          //Stocking the 3 symbols
+          Symbol* s1;
+          Symbol* s2;
+          Symbol* s3;
+          list<Symbol*> l = (*ite)->getListSymbol();
+          s1 = l.front();
+          l.pop_front();
+          s2 = l.front();
+          l.pop_front();
+          s3 = l.front();
+          l.pop_front();
+
+          //Neutral element for addition
+          if (*s2 == add){
+
+            //We get pointers on the numbers
+            //If it's not a number, it's not 0 so the if fails and it's okay.
+            Nombre* s1n=nullptr;
+            Nombre* s3n=nullptr;
+            if(s1->getListSymbol().size()==1)
+            {s1n = dynamic_cast<Nombre*>(s1->getListSymbol().front());}
+            if(s3->getListSymbol().size()==1)
+            {s3n = dynamic_cast<Nombre*>(s3->getListSymbol().front());}
+
+            //Case +0 and dynamic cast didnt replace by a null pointer
+            if((s3n!=nullptr) and (s3n->getVal()==0))
+            {
+              l.push_front(s1);
+            }
+            //Case 0+ and dynamic cast didnt replace by a null pointer
+            else if((s1n != nullptr) and (s1n->getVal()==0))
+            {
+              l.push_front(s3);
+            }
+            //we replace the list of symbol of the expression by a simple nb symbol
+            (*ite)->setListSymbol(l);
+          }
+
+          //Neutral element for substraction
+          else if(*s2 == ss){
+            //We get pointers on the numbers
+            //If it's not a number, it's not 0 so the if fails and it's okay.
+            Nombre* s1n=nullptr;
+            Nombre* s3n=nullptr;
+            if(s1->getListSymbol().size()==1)
+            {s1n = dynamic_cast<Nombre*>(s1->getListSymbol().front());}
+            if(s3->getListSymbol().size()==1)
+            {s3n = dynamic_cast<Nombre*>(s3->getListSymbol().front());}
+
+            //Case -0 and dynamic cast didnt replace by a null pointer
+            if((s3n!=nullptr) and (s3n->getVal()==0))
+            {
+              l.push_front(s1);
+            }
+            //Case 0- and dynamic cast didnt replace by a null pointer
+            else if((s1n != nullptr) and (s1n->getVal()==0))
+            {
+              s3n->setVal(-(s3n->getVal()));
+              l.push_front(s3);
+            }
+            //we replace the list of symbol of the expression by a simple nb symbol
+            (*ite)->setListSymbol(l);
+          }
+
+          //Neutral element for multiplication
+          else if(*s2 == mul)
+          {
+            //We get pointers on the numbers
+            //If it's not a number, it's not 1 so the if fails and it's okay.
+            Nombre* s1n=nullptr;
+            Nombre* s3n=nullptr;
+            if(s1->getListSymbol().size()==1)
+            {s1n = dynamic_cast<Nombre*>(s1->getListSymbol().front());}
+            if(s3->getListSymbol().size()==1)
+            {s3n = dynamic_cast<Nombre*>(s3->getListSymbol().front());}
+
+            //Case *1 and dynamic cast didnt replace by a null pointer
+            if((s3n!=nullptr) and (s3n->getVal()==1))
+            {
+              l.push_front(s1);
+            }
+            //Case 1* and dynamic cast didnt replace by a null pointer
+            else if((s1n != nullptr) and (s1n->getVal()==1))
+            {
+              l.push_front(s3);
+            }
+            //we replace the list of symbol of the expression by a simple nb symbol
+            (*ite)->setListSymbol(l);
+
+          }
+
+          //Neutral element for division
+          else if(*s2 == dv)
+          {
+            //We get pointers on the numbers
+            //If it's not a number, it's not 1 so the if fails and it's okay.
+            Nombre* s3n=nullptr;
+            if(s3->getListSymbol().size()==1)
+            {s3n = dynamic_cast<Nombre*>(s3->getListSymbol().front());}
+
+            //Case /1 and dynamic cast didnt replace by a null pointer
+            if((s3n!=nullptr) and (s3n->getVal()==1))
+            {
+              l.push_front(s1);
+              (*ite)->setListSymbol(l);
+            }
+            //we replace the list of symbol of the expression by a simple nb symbol
+          }
+        }
+        neutralization_recursive(*ite);
+      }
+      else
+      {
+        neutralization_recursive(*ite);
+      }
+    }
+    //Else, if it not composed of other symbols, nothing to do
+  }
 }
 
 int main(int argc, char *argv[])
@@ -115,7 +250,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("transformation"))
     {
-        //reduction
+        neutralization_recursive(tomate->getSymbolStackTop());
     }
 
     if (vm.count("print"))

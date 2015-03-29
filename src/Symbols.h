@@ -297,6 +297,7 @@ public:
 	string to_string(){return boost::lexical_cast<string>(val);}
 	void execute(){std::cout << "Not implemented Nombre" << std::endl;}
 	int getVal(){return val;}
+	void setVal(int nb){val = nb;}
 	virtual ~Nombre(){}
 private:
 	int val;

@@ -13,6 +13,7 @@ class Symbol {
 	public:
 		void addSymbolToList(Symbol* s){listSymbol.push_back(s);}
 		std::list<Symbol*> getListSymbol(){return listSymbol;}
+		void setListSymbol(std::list<Symbol*> aList){listSymbol = aList;}
 		Symbol(int id) : ident(id) {}
 		virtual ~Symbol(){}
 		virtual std::string to_string(){return "";}
