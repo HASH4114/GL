@@ -202,7 +202,7 @@ public:
 class R:public I{
 public:
 	R(int id):I(id){}
-	string to_string(){return "Lire ";}
+	string to_string(){return "lire ";}
 	void execute(){std::cout << "Not implemented R" << std::endl;}
 	virtual ~R() {}
 private:
@@ -212,7 +212,7 @@ private:
 class W:public I{
 public:
 	W(int id):I(id){}
-	string to_string(){return "Ecrire ";}
+	string to_string(){return "ecrire ";}
 	void execute(){std::cout << "Not implemented W" << std::endl;}
 	virtual ~W() {}
 private:
@@ -298,7 +298,7 @@ public:
 	void execute(){std::cout << "Not implemented Nombre" << std::endl;}
 	int getVal(){return val;}
 	virtual ~Nombre(){}
-private:    
+private:
 	int val;
 };
 
