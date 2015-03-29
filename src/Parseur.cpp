@@ -1,5 +1,4 @@
 #include "Parseur.h"
-
 #include <boost/lexical_cast.hpp>
 
 Parseur::Parseur(std::string content)
@@ -82,15 +81,4 @@ Symbol* Parseur::getNextSymbole(){
 	}
 	return resultat;
 }
-/*
-int main()
-{
-	std::string content = "var y,u; const c = 5;";
-	Parseur p(content);
-	int i = 0;
-	while (i<5){
-		std::cout << *p.getNextSymbole() << std::endl;		
-		i++;
-	}
-}*/
 
