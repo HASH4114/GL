@@ -32,7 +32,7 @@ bool StaticAnalysis::Analysis(Symbol* p){
 						varValue.insert(std::pair<std::string,Symbol*>(((Id*)(*it))->getName(),NULL));
 					}
 					else{
-						std::cerr << "la variable " << ((Id*)(*it))->getName() << " existe deja." << std::endl;
+						std::cerr << "la variable " << ((Id*)(*it))->getName() << " est deja declaree" << std::endl;
 					}
 				}
 				it++;
