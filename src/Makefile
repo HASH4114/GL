@@ -4,7 +4,7 @@
 .SUFFIXES:
 
 
-sourcefiles = main.cpp Etats.cpp Automate.cpp Symbols.cpp Parseur.cpp Regex.cpp StaticAnalysis.cpp
+sourcefiles = main.cpp Etats.cpp Automate.cpp Symbols.cpp Parseur.cpp Regex.cpp StaticAnalysis.cpp Execute.cpp
 progname= lut
 CC=g++
 CFLAGS=-g -std=c++11 
