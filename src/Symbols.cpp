@@ -62,7 +62,7 @@ void Lcst::execute(){
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
     {
 		if ((*ite)->getId() == id) {
-			Execute::exec_const.emplace((*ite)->to_string(), value);
+			Execute::exec_const.insert( std::pair<std::string,const int>((*ite)->to_string(),value) );
 		}
     }
 }
@@ -76,7 +76,7 @@ void Lid::execute(){
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
     {
 		if ((*ite)->getId() == id) {
-			Execute::exec_variables.emplace((*ite)->to_string(), 0);
+			Execute::exec_variables[(*ite)->to_string()] = 0;
 		}
 	}
 }
@@ -149,10 +149,10 @@ double Exp::eval(){
 
 void Variable::execute(std::string name, int){
 	// std::cout << "Variable execute" << std::endl;
-	Execute::exec_variables.emplace(name, 0); // TODO check if rigth
+	Execute::exec_variables[name] = 0; // TODO check if rigth
 }
 
 void Constante::execute(std::string name, const int value){
 	// std::cout << "Constante execute with " << name << " value " << value << std::endl;
-	Execute::exec_const.emplace(name, value);
+	Execute::exec_const.insert( std::pair<std::string,const int>(name,value) );
 }
