@@ -17,7 +17,7 @@ void print_error(int id)
     {
         case 1:
             std::cerr << "No input file given" << std::endl;
-            std::cerr << "Usage : ./Analyseur [-h,--help|-p,--print|-a,--analyse|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
+            std::cerr << "Usage : ./Analyseur [-h,--help|-p,--print|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
             break;
         case 2:
             std::cerr << "Extension not valid, should be .lt" << std::endl;
@@ -32,7 +32,7 @@ void display_program_recursive(Symbol* p)
 {
     list<Symbol*> listSymbol = p->getListSymbol();
     list<Symbol*>::iterator ite;
-    
+
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
     {
         if((*ite)->getListSymbol().empty())
@@ -47,13 +47,12 @@ void display_program_recursive(Symbol* p)
 int main(int argc, char *argv[])
 {
 
-    
+
     namespace po = boost::program_options;
     po::options_description desc("Options");
     std::string content;
     desc.add_options() ("help,h", "Print help messages")
                     ("print,p", "Affichage du programme")
-                    ("analyse,a", "Analyse statique du programme")
                     ("execution,e", "Execution du programme")
                     ("transformation,o", "Transformation du programme pour simplifier")
     ;
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
 
     if (vm.count("help"))
     {
-        std::cout << "Usage : " << argv[0] << "[-h,--help|-p,--print|-a,--analyse|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
+        std::cout << "Usage : " << argv[0] << "[-h,--help|-p,--print|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
         std::cout << desc << std::endl;
         return 0;
     }
@@ -102,14 +101,17 @@ int main(int argc, char *argv[])
         e->transition(tomate, symbol);
     }while(symbol->getId() != dol);
 
-    // gestion des arguments
 
-    if (vm.count("analyse"))
-    {
-    	//analyse statique
-    	StaticAnalysis sa;
-    	sa.Analysis(tomate->getSymbolStackTop());
+    //analyse statique
+    StaticAnalysis sa;
+    bool goOn;
+    goOn = sa.Analysis(tomate->getSymbolStackTop());
+
+    if (!goOn){
+      return 0;
     }
+
+    // gestion des arguments
 
     if (vm.count("transformation"))
     {
@@ -126,42 +128,7 @@ int main(int argc, char *argv[])
     {
 
         //reduction
-        
-    }
-    /*Automate* tomate = new Automate();
-        //execution
-    }*/
-
-/*
-    Automate* tomate = new Automate();
-    list<int> listTest = {v,id,vi,id,vi,id,pv,dol};
-    list<Symbol*> listSymb;
-    list<int>::iterator iterator;
-    for (iterator = listTest.begin(); iterator != listTest.end(); ++iterator) {
-        Symbol* s = new Symbol(*iterator);
-        listSymb.push_back(s);
 
     }
-    list<Symbol*>::iterator iteSymb;
-    Etat* e;
-    for(iteSymb = listSymb.begin(); iteSymb != listSymb.end() ; ++iteSymb ){
-
-        e = tomate->getStateStackTop();
-        e->transition(tomate, *iteSymb);
-    }
-
-    display_program(tomate->getSymbolStackTop());*/
     return 0;
 }
-
-/*
-string display_program(list<Symbol*> listSymb)
-{
-    string result ="";
-    list<Symbol*>::iterator ite;
-    for(ite = listSymb.begin();ite != listSymb.end();++ite)
-    {
-        //result += *ite->to_string();
-    }
-    return result;
-}*/
