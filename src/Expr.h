@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <map>
-#include "config.h"
+
+const int EXPR = 0;
+
 using namespace std;
 
 class Expr : public Symbol {
