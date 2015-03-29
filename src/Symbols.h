@@ -1,7 +1,7 @@
 #ifndef SYMBOLS_H
 #define SYMBOLS_H
 
-
+#include <iostream>
 #include <string>
 #include <boost/lexical_cast.hpp>
 #include "Execute.h"
