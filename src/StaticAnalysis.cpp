@@ -46,8 +46,9 @@ bool StaticAnalysis::Analysis(Symbol* p){
 					if(unused.find(((Id*)(*it))->getName()) == unused.end()){
 						unused.insert(((Id*)(*it))->getName());
 						Id* constant = (Id*)(*it);
-						it++;	//TODO Sale
-						it++;
+						std::advance(it, 2);
+						// it++;	//TODO Sale
+						// it++;
 						varValue.insert(std::pair<std::string,Symbol*>(constant->getName(),new DConst(SymbolEnum::n, constant->getName(), ((Nombre*)(*it))->getVal())));
 					}
 					else{
@@ -59,15 +60,16 @@ bool StaticAnalysis::Analysis(Symbol* p){
 		}
 		//If symbol is ECRIRE
 		else if(typeid(**it) == typeid(W)){
+			bool writen = false;
 			it++;
+			std::list<Symbol*>::iterator ite = it;
 			while(typeid(**it) != typeid(ExpPv)){
 				if(typeid(**it) == typeid(Id)){
 					std::map<std::string, Symbol*>::iterator found = varValue.find(((Id*)(*it))->getName());
-					if(found == varValue.end()){
-						std::cerr << "la variable " << ((Id*)(*it))->getName() << " n'a pas ete declaree." << std::endl;
-						status = false;
-					}else if(found->second == NULL){
-						std::cerr << "la variable " << ((Id*)(*it))->getName() << " n'a pas ete assignee." << std::endl;
+					if((found == varValue.end() || found->second == NULL) && !writen){
+						std::string sortie = varUnknown(ite);
+						std::cerr << sortie << std::endl;
+						writen = true;
 						status = false;
 					}else{
 						unused.erase(((Id*)(*it))->getName());
@@ -100,6 +102,7 @@ bool StaticAnalysis::Analysis(Symbol* p){
 		//If symbol is id
 			//Do the affectation + remove used var if there are some
 		else if(typeid(**it) == typeid(Id)){
+			bool writen = false;
 			std::map<std::string, Symbol*>::iterator affected = varValue.find(((Id*)(*it))->getName());
 			std::map<std::string, Symbol*>::iterator found;
 			if(affected == varValue.end()){
@@ -114,11 +117,17 @@ bool StaticAnalysis::Analysis(Symbol* p){
 				affected->second = new DVar(SymbolEnum::n, ((Id*)(*it))->getName(), 0);
 			}
 			it++;
+			std::list<Symbol*>::iterator beginingAff = it;
+			beginingAff++;
 			while(typeid(**it) != typeid(ExpPv)){
 				if(typeid(**it) == typeid(Id)){
 					found = varValue.find(((Id*)(*it))->getName());
-					if(found->second == NULL){
-						std::cerr << ((Id*)(*it))->getName() << " n'a pas ete declaree." << std::endl;
+					if((found->second == NULL || found == varValue.end())&& !writen){
+						//while()
+						//std::cerr << ((Id*)(*it))->getName() << " n'a pas ete declaree." << std::endl;				//TODO idem
+						std::string sortie = varUnknown(beginingAff);
+						std::cerr << sortie << std::endl;
+						writen = true;
 						status = false;
 					}
 					else{
@@ -150,5 +159,14 @@ StaticAnalysis::~StaticAnalysis(){
 			delete it->second;
 		}
 	}
+}
 
+std::string StaticAnalysis::varUnknown(std::list<Symbol*>::iterator begining){
+	std::string sortie = "une valeur dans l'expression ";
+	while (typeid(**begining) != typeid(ExpPv)){
+		sortie += (*begining)->to_string();
+		begining++;
+	}
+	sortie += " n'est pas connue.";
+	return sortie;
 }

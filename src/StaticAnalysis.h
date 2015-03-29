@@ -29,6 +29,7 @@ class StaticAnalysis
 		std::string fileName;
 		std::list<Symbol*> listSymbol;
 		void getAllSymbols(Symbol* p);
+		std::string varUnknown(std::list<Symbol*>::iterator begining);
 };
 
 #endif
