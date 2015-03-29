@@ -126,9 +126,9 @@ int main(int argc, char *argv[])
 
     if (vm.count("execution"))
     {
-
-        //reduction
-
+        Execute execution(tomate->getSymbolStackTop());
+        std::cout << tomate->getSymbolStackTop()->to_string() << std::endl;
+        execution.run();
     }
     return 0;
 }
