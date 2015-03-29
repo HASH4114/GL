@@ -16,6 +16,8 @@ class Symbol {
 		Symbol(int id) : ident(id) {}
 		virtual ~Symbol(){}
 		virtual std::string to_string(){return "";}
+		virtual void execute(){}
+		virtual void execute(std::string, int){}
 		int getId(){return ident;}
 		void print();
 		//Redefinition of the operator that is supposed to convert Symbol in int.
