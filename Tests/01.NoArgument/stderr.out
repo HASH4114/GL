@@ -1,2 +1,2 @@
 No input file given
-Usage : ./Analyseur [-h,--help|-p,--print|-a,--analyse|-e,--execution|-o,--transformation] <Lutin source>
+Usage : ./Analyseur [-h,--help|-p,--print|-e,--execution|-o,--transformation] <Lutin source>

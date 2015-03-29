@@ -183,7 +183,7 @@ public:
 class R:public I{
 public:
 	R(int id):I(id){}
-	string to_string(){return "Lire ";}
+	string to_string(){return "lire ";}
 	virtual ~R() {}
 private:
 	//Variable var;
@@ -192,7 +192,7 @@ private:
 class W:public I{
 public:
 	W(int id):I(id){}
-	string to_string(){return "Ecrire ";}
+	string to_string(){return "ecrire ";}
 	virtual ~W() {}
 private:
 	//Variable var;
@@ -270,7 +270,7 @@ public:
 	string to_string(){return boost::lexical_cast<string>(val);}
 	int getVal(){return val;}
 	virtual ~Nombre(){}
-private:    
+private:
 	int val;
 };
 
