@@ -19,7 +19,7 @@ bool StaticAnalysis::Analysis(Symbol* p){
 	std::set<std::string> unused;
 	bool status = true;
 	getAllSymbols(p);
-		
+
 	std::list<Symbol*>::iterator it = listSymbol.begin();
 	while (it != listSymbol.end()){
 		//If symbol is VAR
@@ -170,3 +170,61 @@ std::string StaticAnalysis::varUnknown(std::list<Symbol*>::iterator begining){
 	sortie += " n'est pas connue.";
 	return sortie;
 }
+
+/*void StaticAnalysis::propagation(Symbol* p)
+{
+	list<Symbol*> listSymbol = p->getListSymbol();
+	list<Symbol*>::iterator ite;
+	for (ite = listSymbol.begin(); ite != listSymbol.end(); ++ite)
+	{
+		Id* c1 = dynamic_cast<Id*>(*ite);
+		list<Symbol*> l = (*ite)->getListSymbol();
+		//If the symbol is composed by other symbols
+		if (!(l.empty()))
+		{
+
+			//If the symbol is an expression
+			if ((**ite) == Ee)
+			{
+				if ((*ite)->getListSymbol().size() == 3)
+				{
+					//Stocking the 3 symbols
+					Symbol* s1;
+					Symbol* s2;
+					Symbol* s3;
+
+					s1 = l.front();
+					l.pop_front();
+					s2 = l.front();
+					l.pop_front();
+					s3 = l.front();
+					l.pop_front();
+
+					//We get pointers on the ids that are supposed to be const or var
+					//If it's not a const or var, the null test will fail.
+					Id* s1i=nullptr;
+					Id* s3i=nullptr;
+					if(s1->getListSymbol().size()==1)
+					{s1i = dynamic_cast<Id*>(s1->getListSymbol().front());}
+					if(s3->getListSymbol().size()==1)
+					{s3i = dynamic_cast<Id*>(s3->getListSymbol().front());}
+
+				}
+			}
+		}
+		//If the type of the element is an Id
+		else if ((*ite)->getId()==0)
+		{
+				//Checking if it is a const
+				std::map<std::string, Symbol*>::iterator affected = varValue.find(c1->getName());
+				//If it is found it's a const, else it's a variable
+				if(!(affected == varValue.end()))
+				{
+					Nombre* nb = new Nombre(n);
+					nb->setVal(affected->second.getValue());
+					*ite = nb;
+				}
+		}
+	}
+}
+*/

@@ -24,6 +24,7 @@ class StaticAnalysis
 		StaticAnalysis();
 		virtual ~StaticAnalysis();
 		bool Analysis(Symbol* p);
+		//void propagation(Symbol* p);
 	private:
 		std::map<std::string, Symbol*> varValue;		//Table des symboles
 		std::string fileName;
