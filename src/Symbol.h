@@ -21,8 +21,6 @@ class Symbol {
 		virtual void execute(std::string, int){}
 		int getId(){return ident;}
 		void print();
-		//Redefinition of the operator that is supposed to convert Symbol in int.
-		//Doesn't work for now, that's apparently why we have an error.
 		operator int() const {return ident;}
 };
 
