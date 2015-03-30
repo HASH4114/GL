@@ -25,8 +25,10 @@ bool StaticAnalysis::Analysis(Symbol* p){
 		//If symbol is VAR
 		if(typeid(**it) == typeid(Variable)){
 			it++;
+			//Until we find a semicolon
 			while(typeid(**it) != typeid(ExpPv)){
 				if(typeid(**it) == typeid(Id)){
+					//If the variable doesn't exist yet
 					if(unused.find(((Id*)(*it))->getName()) == unused.end()){
 						unused.insert(((Id*)(*it))->getName());
 						varValue.insert(std::pair<std::string,Symbol*>(((Id*)(*it))->getName(),NULL));
@@ -43,12 +45,11 @@ bool StaticAnalysis::Analysis(Symbol* p){
 			it++;
 			while(typeid(**it) != typeid(ExpPv)){
 				if(typeid(**it) == typeid(Id)){
+					//If the constant doesn't exist yet
 					if(unused.find(((Id*)(*it))->getName()) == unused.end()){
 						unused.insert(((Id*)(*it))->getName());
 						Id* constant = (Id*)(*it);
 						std::advance(it, 2);
-						// it++;	//TODO Sale
-						// it++;
 						varValue.insert(std::pair<std::string,Symbol*>(constant->getName(),new DConst(SymbolEnum::n, constant->getName(), ((Nombre*)(*it))->getVal())));
 					}
 					else{
@@ -66,6 +67,7 @@ bool StaticAnalysis::Analysis(Symbol* p){
 			while(typeid(**it) != typeid(ExpPv)){
 				if(typeid(**it) == typeid(Id)){
 					std::map<std::string, Symbol*>::iterator found = varValue.find(((Id*)(*it))->getName());
+					//If the variable doesn't exist or isn't initialized and the message wasn't already written
 					if((found == varValue.end() || found->second == NULL) && !writen){
 						std::string sortie = varUnknown(ite);
 						std::cerr << sortie << std::endl;
@@ -123,8 +125,6 @@ bool StaticAnalysis::Analysis(Symbol* p){
 				if(typeid(**it) == typeid(Id)){
 					found = varValue.find(((Id*)(*it))->getName());
 					if((found->second == NULL || found == varValue.end())&& !writen){
-						//while()
-						//std::cerr << ((Id*)(*it))->getName() << " n'a pas ete declaree." << std::endl;				//TODO idem
 						std::string sortie = varUnknown(beginingAff);
 						std::cerr << sortie << std::endl;
 						writen = true;

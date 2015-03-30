@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <boost/lexical_cast.hpp>
+#include <boost/regex.hpp>
 #include "Execute.h"
 #include "Symbol.h"
 
@@ -108,8 +109,6 @@ public:
 	virtual ~Exp(){}
 };
 
-
-
 class ExpUnaire:public Exp{
 public:
 	ExpUnaire(int id):Exp(id){}
@@ -205,8 +204,6 @@ public:
 	string to_string(){return "lire ";}
 	void execute(){std::cout << "Not implemented R" << std::endl;}
 	virtual ~R() {}
-private:
-	//Variable var;
 };
 
 class W:public I{
@@ -215,9 +212,6 @@ public:
 	string to_string(){return "ecrire ";}
 	void execute(){std::cout << "Not implemented W" << std::endl;}
 	virtual ~W() {}
-private:
-	//Variable var;
-	//Constante cons;
 };
 
 class Aff:public I{
@@ -226,12 +220,7 @@ public:
 	string to_string(){return ":=";}
 	void execute(){std::cout << "Not implemented Aff" << std::endl;}
 	virtual ~Aff() {}
-private:
-	//Variable var;
 };
-
-
-//Retravailler
 
 //execution et analyse statique
 class DVar:public D{
@@ -247,6 +236,7 @@ private:
 	string name;
 	int value;
 };
+
 //execution et analyse statique
 class DConst:public D{
 public:
@@ -269,6 +259,7 @@ public:
 	void execute(std::string name, int);
 	virtual ~Variable(){}
 };
+
 //const
 class Constante:public Exp{
 public:
@@ -277,6 +268,7 @@ public:
 	void execute(std::string name, int value);
 	virtual ~Constante(){}
 };
+
 //id
 class Id:public Symbol{
 public:
@@ -289,6 +281,7 @@ public:
 private:
 	string name;
 };
+
 //nb
 class Nombre:public Exp{
 public:
@@ -302,6 +295,5 @@ public:
 private:
 	int val;
 };
-
 
 #endif

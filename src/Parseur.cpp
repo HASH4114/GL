@@ -1,5 +1,4 @@
 #include "Parseur.h"
-
 #include <boost/lexical_cast.hpp>
 
 Parseur::Parseur(std::string content)
@@ -23,7 +22,7 @@ Symbol* Parseur::getNextSymbole(){
 	std::size_t pos = content.find(results.word);
 
 	if (pos == std::string::npos){
-		return NULL; // TODO : Gestion des erreurs
+		return NULL;
 	}
 
 	content = content.substr(pos + results.word.length());
@@ -82,15 +81,4 @@ Symbol* Parseur::getNextSymbole(){
 	}
 	return resultat;
 }
-/*
-int main()
-{
-	std::string content = "var y,u; const c = 5;";
-	Parseur p(content);
-	int i = 0;
-	while (i<5){
-		std::cout << *p.getNextSymbole() << std::endl;		
-		i++;
-	}
-}*/
 
