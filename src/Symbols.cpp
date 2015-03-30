@@ -82,15 +82,24 @@ void Lid::execute(){
 void I::execute(){
 	list<Symbol*> listSymbol = this->getListSymbol();
     list<Symbol*>::iterator ite = listSymbol.begin();
-    int input;
+    string input;
+
+    //Pour la verification de l'input
+    bool matched = false;
+	boost::smatch result;
+	boost::regex reg("^[0-9]+$");
 
     // Traitement différent suivant le type d'instruction.
     if((*ite)->getId() == w){
     	std::cout << ((Exp*)(*++ite))->eval() << std::endl;
     }
     else if ((*ite)->getId() == r){
-    	std::cin >> input;
-    	Execute::exec_variables[(*++ite)->to_string()] = input;
+    	while (!matched){
+    		std::cout << "Veuillez entrer un nombre entier : ";
+	    	std::cin >> input;
+			matched = boost::regex_search(input, result, reg,boost::match_single_line);
+		}
+    	Execute::exec_variables[(*++ite)->to_string()] = boost::lexical_cast<int>(input);
     }
     else{
     	Execute::exec_variables[(*ite)->to_string()] = ((Exp*)(*std::next(ite,2)))->eval();

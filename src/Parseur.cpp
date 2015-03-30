@@ -22,7 +22,7 @@ Symbol* Parseur::getNextSymbole(){
 	std::size_t pos = content.find(results.word);
 
 	if (pos == std::string::npos){
-		return NULL; // TODO : Gestion des erreurs
+		return NULL;
 	}
 
 	content = content.substr(pos + results.word.length());

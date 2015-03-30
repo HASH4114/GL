@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <boost/lexical_cast.hpp>
+#include <boost/regex.hpp>
 #include "Execute.h"
 #include "Symbol.h"
 
