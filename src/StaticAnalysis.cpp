@@ -47,8 +47,6 @@ bool StaticAnalysis::Analysis(Symbol* p){
 						unused.insert(((Id*)(*it))->getName());
 						Id* constant = (Id*)(*it);
 						std::advance(it, 2);
-						// it++;	//TODO Sale
-						// it++;
 						varValue.insert(std::pair<std::string,Symbol*>(constant->getName(),new DConst(SymbolEnum::n, constant->getName(), ((Nombre*)(*it))->getVal())));
 					}
 					else{
@@ -123,8 +121,6 @@ bool StaticAnalysis::Analysis(Symbol* p){
 				if(typeid(**it) == typeid(Id)){
 					found = varValue.find(((Id*)(*it))->getName());
 					if((found->second == NULL || found == varValue.end())&& !writen){
-						//while()
-						//std::cerr << ((Id*)(*it))->getName() << " n'a pas ete declaree." << std::endl;				//TODO idem
 						std::string sortie = varUnknown(beginingAff);
 						std::cerr << sortie << std::endl;
 						writen = true;

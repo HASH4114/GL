@@ -26,7 +26,6 @@ void D::execute() {
 	Symbol* type = *(listSymbol.begin());
 	// std::cout << "D execute" << std::endl;
 	int value = 0;
-	// Faudra boucler : Appel a Lid et Lcst qui contiennent la même chose
 
 	// on recherche la valeur
 	for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
@@ -42,7 +41,6 @@ void D::execute() {
 			(type)->execute((*ite)->to_string(),value);
 		}
     }
-	// on envoie direct a Variable ou Constante
 }
 
 void Lcst::execute(){
@@ -149,7 +147,7 @@ double Exp::eval(){
 
 void Variable::execute(std::string name, int){
 	// std::cout << "Variable execute" << std::endl;
-	Execute::exec_variables[name] = 0; // TODO check if rigth
+	Execute::exec_variables[name] = 0;
 }
 
 void Constante::execute(std::string name, const int value){
