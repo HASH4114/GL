@@ -87,7 +87,7 @@ void I::execute(){
     //Pour la verification de l'input
     bool matched = false;
 	boost::smatch result;
-	boost::regex reg("^[0-9]+$");
+	boost::regex reg("^-?[0-9]+$");
 
     // Traitement différent suivant le type d'instruction.
     if((*ite)->getId() == w){
