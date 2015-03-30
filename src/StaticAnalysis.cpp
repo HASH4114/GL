@@ -50,8 +50,6 @@ bool StaticAnalysis::Analysis(Symbol* p){
 						unused.insert(((Id*)(*it))->getName());
 						Id* constant = (Id*)(*it);
 						std::advance(it, 2);
-						// it++;	//TODO Sale
-						// it++;
 						varValue.insert(std::pair<std::string,Symbol*>(constant->getName(),new DConst(SymbolEnum::n, constant->getName(), ((Nombre*)(*it))->getVal())));
 					}
 					else{

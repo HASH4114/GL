@@ -26,7 +26,6 @@ void D::execute() {
 	Symbol* type = *(listSymbol.begin());
 	// std::cout << "D execute" << std::endl;
 	int value = 0;
-	// Faudra boucler : Appel a Lid et Lcst qui contiennent la même chose
 
 	// on recherche la valeur
 	for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
@@ -42,7 +41,6 @@ void D::execute() {
 			(type)->execute((*ite)->to_string(),value);
 		}
     }
-	// on envoie direct a Variable ou Constante
 }
 
 void Lcst::execute(){
@@ -51,14 +49,14 @@ void Lcst::execute(){
 	// std::cout << "Lcste execute" << std::endl;
 	int value = 0;
 
-	// on recherche la valeur
+	// on recupere la valeur du const
 	for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
     {
 		if ((*ite)->getId() == n) {
 			value = ((Nombre*)(*ite))->getVal();
 		}
     }
-	// on recherche le nom
+	// on recherche le nom de la constante, et on ajoute a la map
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
     {
 		if ((*ite)->getId() == id) {
@@ -72,7 +70,7 @@ void Lid::execute(){
     list<Symbol*>::iterator ite;
 	// std::cout << "Lid execute" << std::endl;
 
-	// on recherche le nom
+	// on recherche le nom de la constante et on ajoute au 
     for(ite = listSymbol.begin() ; ite != listSymbol.end() ; ++ite)
     {
 		if ((*ite)->getId() == id) {
@@ -86,6 +84,7 @@ void I::execute(){
     list<Symbol*>::iterator ite = listSymbol.begin();
     int input;
 
+    // Traitement différent suivant le type d'instruction.
     if((*ite)->getId() == w){
     	std::cout << ((Exp*)(*++ite))->eval() << std::endl;
     }
@@ -149,7 +148,7 @@ double Exp::eval(){
 
 void Variable::execute(std::string name, int){
 	// std::cout << "Variable execute" << std::endl;
-	Execute::exec_variables[name] = 0; // TODO check if rigth
+	Execute::exec_variables[name] = 0;
 }
 
 void Constante::execute(std::string name, const int value){
