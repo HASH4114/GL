@@ -12,13 +12,13 @@
 
 #include "boost/program_options.hpp"
 
-void print_error(int id)
+void print_error(int id, char *progname)
 {
     switch(id)
     {
         case 1:
             std::cerr << "No input file given" << std::endl;
-            std::cerr << "Usage : ./Analyseur [-h,--help|-p,--print|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
+            std::cerr << "Usage : " << progname << " [-h,--help|-p,--print|-e,--execution|-o,--transformation] <Lutin source>" << std::endl;
             break;
         case 2:
             std::cerr << "Extension not valid, should be .lt" << std::endl;
@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
     std::string last(argv[argc-1]);
     if(argc < 2 || (last != "-h" && last != "--help" && last[last.size()-1] == '-'))
     {
-        print_error(1);
+        print_error(1, argv[0]);
         return 127;
     }
 
@@ -212,14 +212,14 @@ int main(int argc, char *argv[])
 
     if(last.find_last_of(".lt") != last.size()-1)
     {
-        print_error(2);
+        print_error(2, NULL);
         return 2;
     }
 
     std::ifstream ifs(last.c_str());
     if(ifs.fail()) // Fichier valide ?
     {
-        print_error(3);
+        print_error(3, NULL);
         std::cerr << "Error: " << std::strerror(errno) << std::endl;
         return 1;
     }
